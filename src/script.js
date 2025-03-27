@@ -5,6 +5,7 @@ let speed = 0;
 let incline = 0;
 let isRunning = false;
 let countdownTime = 0;
+let workoutTotalTime = 0;
 let countdownInterval = null;
 function init() {
     const startBtn       = document.getElementById('startBtn');
@@ -32,20 +33,31 @@ function init() {
     updateSpeedDisplay();
     updateInclineDisplay();
     updateTimerDisplay();
+    updateProgressBar(0);
     console.log("init() -> Event listeners ingesteld.");
 }
 
-function startClickHandler(e) {
+function startClickHandler() {
     if (!isRunning) {
         isRunning = true;
         console.log("Workout gestart.");
+
+        // Start de countdown, maar alleen als countdownTime > 0
+        if (countdownTime > 0) {
+            startCountdown(countdownTime);
+        } else {
+            console.log("Geen tijd ingesteld. Kies eerst een workout-mode of stel tijd in.");
+        }
     }
 }
 
-function stopClickHandler(e) {
+function stopClickHandler() {
     if (isRunning) {
         isRunning = false;
         console.log("Workout gestopt.");
+
+        // Stop de countdown
+        stopCountdown();
     }
 }
 
@@ -100,11 +112,16 @@ function setWorkoutMode(mode) {
             console.log("Onbekende mode.");
             break;
     }
+    const inclineSlider = document.getElementById('inclineSlider');
+    if (inclineSlider) {
+        inclineSlider.value = incline;
+    }
 
     // Update meteen de interface
     updateSpeedDisplay();
     updateInclineDisplay();
     updateTimerDisplay();
+    updateProgressBar(0);
 }
 
 function startCountdown(timeInSeconds) {
@@ -154,4 +171,23 @@ function updateInclineDisplay() {
     if (inclineCounterEl) {
         inclineCounterEl.textContent = incline.toFixed(1);
     }
+}
+
+function updateProgressBar() {
+    // Haal de progress-bar element op
+    const progressEl = document.getElementById('progressFill');
+    if (!progressEl) return;
+
+    // Als de workoutTotalTime 0 is, voorkom deling door nul
+    if (workoutTotalTime === 0) {
+        progressEl.style.width = "0%";
+        return;
+    }
+
+    // Hoe dichter bij 0, hoe meer gevuld => (initialTime - currentTime) / initialTime
+    const fraction = (workoutTotalTime - countdownTime) / workoutTotalTime;
+    const percentage = fraction * 100;
+
+    // Stel breedte (of height) in
+    progressEl.style.width = percentage + "%";
 }
