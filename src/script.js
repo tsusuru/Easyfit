@@ -5,10 +5,11 @@ let speed = 0;
 let incline = 0;
 let isRunning = false;
 let countdownTime = 0;
+let workoutTotalTime = 0;
 let countdownInterval = null;
 function init() {
 
-    // Identify Buttons on the HTML file
+    // buttons
     const startBtn       = document.getElementById('startBtn');
     const stopBtn        = document.getElementById('stopBtn');
     const speedUpBtn     = document.getElementById('speedUpBtn');
@@ -16,10 +17,12 @@ function init() {
     const inclineSlider  = document.getElementById('inclineSlider');
     const arrowBack      = document.getElementById('arrowBack');
 
+    //modes
     const walkBtn   = document.getElementById('walkModeBtn');
     const sprintBtn = document.getElementById('sprintModeBtn');
     const hillBtn   = document.getElementById('hillModeBtn');
 
+    //eventlisteners buttons
     startBtn.addEventListener('click', startClickHandler);
     stopBtn.addEventListener('click', stopClickHandler);
     speedUpBtn.addEventListener('click', speedUpClickHandler);
@@ -27,6 +30,7 @@ function init() {
     inclineSlider.addEventListener('input', inclineChangeHandler);
     arrowBack.addEventListener('click', arrowBackHandler);
 
+    //modes
     walkBtn?.addEventListener('click', () => setWorkoutMode("walk"));
     sprintBtn?.addEventListener('click', () => setWorkoutMode("sprint"));
     hillBtn?.addEventListener('click', () => setWorkoutMode("hill"));
@@ -34,20 +38,31 @@ function init() {
     updateSpeedDisplay();
     updateInclineDisplay();
     updateTimerDisplay();
+    updateProgressBar(0);
     console.log("init() -> Event listeners ingesteld.");
 }
 
-function startClickHandler(e) {
+function startClickHandler() {
     if (!isRunning) {
         isRunning = true;
         console.log("Workout gestart.");
+
+        // Start de countdown, maar alleen als countdownTime > 0
+        if (countdownTime > 0) {
+            startCountdown(countdownTime);
+        } else {
+            console.log("Geen tijd ingesteld. Kies eerst een workout-mode of stel tijd in.");
+        }
     }
 }
 
-function stopClickHandler(e) {
+function stopClickHandler() {
     if (isRunning) {
         isRunning = false;
         console.log("Workout gestopt.");
+
+        // Stop de countdown
+        stopCountdown();
     }
 }
 
@@ -102,11 +117,17 @@ function setWorkoutMode(mode) {
             console.log("Onbekende mode.");
             break;
     }
+    workoutTotalTime = countdownTime;
+    const inclineSlider = document.getElementById('inclineSlider');
+    if (inclineSlider) {
+        inclineSlider.value = incline;
+    }
 
     // Update meteen de interface
     updateSpeedDisplay();
     updateInclineDisplay();
     updateTimerDisplay();
+    updateProgressBar(0);
 }
 
 function startCountdown(timeInSeconds) {
@@ -120,11 +141,10 @@ function startCountdown(timeInSeconds) {
         if (countdownTime > 0) {
             countdownTime--;
             updateTimerDisplay();
+            updateProgressBar();    // <--- Nu wordt de bar elke seconde geüpdatet
         } else {
-            // Tijd is op
-            console.log("Countdown klaar! Workout afgelopen.");
-            stopCountdown(); // timer stoppen
-            // Je zou hier ook `stopClickHandler()` kunnen aanroepen
+            console.log("Countdown klaar!");
+            stopCountdown();
         }
     }, 1000);
 }
@@ -156,4 +176,19 @@ function updateInclineDisplay() {
     if (inclineCounterEl) {
         inclineCounterEl.textContent = incline.toFixed(1);
     }
+}
+
+function updateProgressBar() {
+    const progressEl = document.getElementById('progressFill');
+    if (!progressEl) return;
+
+    if (workoutTotalTime === 0) {
+        progressEl.style.width = "0%";
+        return;
+    }
+
+    const fraction = (workoutTotalTime - countdownTime) / workoutTotalTime;
+    const percentage = fraction * 100;
+
+    progressEl.style.width = percentage + "%";
 }
