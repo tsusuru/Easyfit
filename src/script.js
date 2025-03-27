@@ -9,7 +9,7 @@ let workoutTotalTime = 0;
 let countdownInterval = null;
 function init() {
 
-    // Identify Buttons on the HTML file
+    // buttons
     const startBtn       = document.getElementById('startBtn');
     const stopBtn        = document.getElementById('stopBtn');
     const speedUpBtn     = document.getElementById('speedUpBtn');
@@ -17,10 +17,12 @@ function init() {
     const inclineSlider  = document.getElementById('inclineSlider');
     const arrowBack      = document.getElementById('arrowBack');
 
+    //modes
     const walkBtn   = document.getElementById('walkModeBtn');
     const sprintBtn = document.getElementById('sprintModeBtn');
     const hillBtn   = document.getElementById('hillModeBtn');
 
+    //eventlisteners buttons
     startBtn.addEventListener('click', startClickHandler);
     stopBtn.addEventListener('click', stopClickHandler);
     speedUpBtn.addEventListener('click', speedUpClickHandler);
@@ -28,6 +30,7 @@ function init() {
     inclineSlider.addEventListener('input', inclineChangeHandler);
     arrowBack.addEventListener('click', arrowBackHandler);
 
+    //modes
     walkBtn?.addEventListener('click', () => setWorkoutMode("walk"));
     sprintBtn?.addEventListener('click', () => setWorkoutMode("sprint"));
     hillBtn?.addEventListener('click', () => setWorkoutMode("hill"));
@@ -114,6 +117,7 @@ function setWorkoutMode(mode) {
             console.log("Onbekende mode.");
             break;
     }
+    workoutTotalTime = countdownTime;
     const inclineSlider = document.getElementById('inclineSlider');
     if (inclineSlider) {
         inclineSlider.value = incline;
@@ -137,11 +141,10 @@ function startCountdown(timeInSeconds) {
         if (countdownTime > 0) {
             countdownTime--;
             updateTimerDisplay();
+            updateProgressBar();    // <--- Nu wordt de bar elke seconde geüpdatet
         } else {
-            // Tijd is op
-            console.log("Countdown klaar! Workout afgelopen.");
-            stopCountdown(); // timer stoppen
-            // Je zou hier ook `stopClickHandler()` kunnen aanroepen
+            console.log("Countdown klaar!");
+            stopCountdown();
         }
     }, 1000);
 }
@@ -176,20 +179,16 @@ function updateInclineDisplay() {
 }
 
 function updateProgressBar() {
-    // Haal de progress-bar element op
     const progressEl = document.getElementById('progressFill');
     if (!progressEl) return;
 
-    // Als de workoutTotalTime 0 is, voorkom deling door nul
     if (workoutTotalTime === 0) {
         progressEl.style.width = "0%";
         return;
     }
 
-    // Hoe dichter bij 0, hoe meer gevuld => (initialTime - currentTime) / initialTime
     const fraction = (workoutTotalTime - countdownTime) / workoutTotalTime;
     const percentage = fraction * 100;
 
-    // Stel breedte (of height) in
     progressEl.style.width = percentage + "%";
 }
