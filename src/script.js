@@ -7,6 +7,8 @@ let isRunning = false;
 let countdownTime = 0;
 let countdownInterval = null;
 function init() {
+
+    // Identify Buttons on the HTML file
     const startBtn       = document.getElementById('startBtn');
     const stopBtn        = document.getElementById('stopBtn');
     const speedUpBtn     = document.getElementById('speedUpBtn');
