@@ -71,6 +71,8 @@ function pauseClickHandler() {
 
 function customClickHandler(){
     console.log("U heeft de custom optie gekozen")
+    //Zet hierin de code voor wanneer je op de button "Custom klikt"
+    //Je moet tijd, incline en speed zelf kunnen instellen met deze button
 }
 
 function stopClickHandler() {
@@ -222,4 +224,6 @@ function updateProgressBar() {
 
 function displayResults(){
     console.log("display the results, not coded yet")
+    //Zet hierin de resultaten nadat je je workout heb gedaan
+    //Tijd verstreken, welke workout je deed met welke standen etc etc
 }
