@@ -30,7 +30,7 @@ function init() {
     inclineSlider.addEventListener('input', inclineChangeHandler);
     arrowBack.addEventListener('click', arrowBackHandler);
 
-    //modes
+    //eventlisteners modes
     walkBtn?.addEventListener('click', () => setWorkoutMode("walk"));
     sprintBtn?.addEventListener('click', () => setWorkoutMode("sprint"));
     hillBtn?.addEventListener('click', () => setWorkoutMode("hill"));
@@ -61,7 +61,7 @@ function stopClickHandler() {
         isRunning = false;
         console.log("Workout gestopt.");
 
-        // Stop de countdown
+
         stopCountdown();
     }
 }
@@ -90,26 +90,25 @@ function arrowBackHandler(e) {
     console.log("Ga terug naar voorgaand scherm.");
 }
 function setWorkoutMode(mode) {
-    // Stel speed, incline, countdownTime etc.
     switch (mode) {
         case "walk":
-            speed = 3;        // voorbeeld
-            incline = 0;      // voorbeeld
-            countdownTime = 600; // 10 minuten in seconden
+            speed = 3;
+            incline = 0;
+            countdownTime = 600;
             console.log("Mode: Wandelen");
             break;
 
         case "sprint":
             speed = 10;
             incline = 2;
-            countdownTime = 120; // 2 minuten sprint
+            countdownTime = 120;
             console.log("Mode: Sprint");
             break;
 
         case "hill":
             speed = 5;
             incline = 5;
-            countdownTime = 300; // 5 minuten
+            countdownTime = 300;
             console.log("Mode: Heuvel");
             break;
 
@@ -131,17 +130,15 @@ function setWorkoutMode(mode) {
 }
 
 function startCountdown(timeInSeconds) {
-    // Zorg dat we niet twee timers tegelijk starten
     if (countdownInterval) {
         clearInterval(countdownInterval);
     }
 
-    // countdownTime is al ingesteld via setWorkoutMode
     countdownInterval = setInterval(() => {
         if (countdownTime > 0) {
             countdownTime--;
             updateTimerDisplay();
-            updateProgressBar();    // <--- Nu wordt de bar elke seconde geüpdatet
+            updateProgressBar();
         } else {
             console.log("Countdown klaar!");
             stopCountdown();
