@@ -9,64 +9,86 @@
     <link href="src/output.css" rel="stylesheet">
     <title>Document</title>
 </head>
-<body>
-<nav>
+<body class="m-0 p-0">
 
+<nav>
+    <div class="nav-bar flex justify-center p-4">
+        <h1 class="underline text-4xl">Time :D</h1>
+    </div>
 </nav>
+
+
 <header>
-    <h1 class="underline text-3xl font-extrabold">HELLO WORLD</h1>
+    <div class="header-container">
+        <section class="current-workout">
+
+        </section>
+
+        <section class="workout-display">
+
+        </section>
+    </div>
 </header>
+
 <main>
-    <div id="incline>">
-        <div id="incline-left">
+
+    <section class="incline>">
+        <div class="incline-left">
             <h2>
                 Incline
             </h2>
-            <div id="incline-counter">
+            <div class="incline-counter">
 
             </div>
             <img src="" alt="Incline Pictogram">
         </div>
-        <div id="incline-right">
+        <div class="incline-right">
             <img src="" alt="Incline +">
             <!--Leave space here for the slide bar
             <input>-->
             <img src="" alt="Incline -">
         </div>
-    </div>
-    <div id="start-stop">
-        <div id="start-column">
-            <h2>
-                Start
-            </h2>
-            <img src="" alt="Start Button" id="startBtn">
-        </div>
-        <div id="stop-column">
-            <h2>
-                Stop
-            </h2>
-            <img src="" alt="Stop Button" id="stopBtn">
-        </div>
-    </div>
-    <div id="speed">
-        <div id="speed-left">
+    </section>
+
+    <section class="playModes">
+        <section class="start-stop">
+            <div class="start-column">
+                <h2>
+                    Start
+                </h2>
+                <img src="img/Start_Button.png" alt="Start Button" class="startBtn">
+            </div>
+            <div class="stop-column">
+                <h2>
+                    Stop
+                </h2>
+                <img src="" alt="Stop Button" class="stopBtn">
+            </div>
+        </section>
+
+        <section class="pause">
+            <img src="" alt="Pause Button" class="pauseBtn">
+        </section>
+    </section>
+
+
+
+    <section class="speed">
+        <div class="speed-left">
             <h2>
                 Speed
             </h2>
-            <div id="speed-counter">
+            <div class="speed-counter">
 
             </div>
             <img src="" alt="Speed Pictogram">
-
-        </div>
-        <div id="speed-right">
-            <img src="" alt="speed-up button" id="speedUpBtn">
-            <img src="" alt="speed-down button" id="speedDownBtn">
         </div>
 
-    </div>
+        <div class="speed-right">
+                <img src="" alt="speed-up button" class="speedUpBtn">
+                <img src="" alt="speed-down button" class="speedDownBtn">
+        </div>
+    </section>
 </main>
-
-
 </body>
 </html>
