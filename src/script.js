@@ -17,7 +17,7 @@ function init() {
     const speedDownBtn   = document.getElementById('speedDownBtn');
     const inclineSlider  = document.getElementById('inclineSlider');
     const arrowBack      = document.getElementById('arrowBack');
-    const customBtn = document.getElementById('customBtn');
+   // const customBtn = document.getElementById('customBtn');
 
     //modes
     const walkBtn   = document.getElementById('walkModeBtn');
@@ -32,7 +32,7 @@ function init() {
     speedDownBtn.addEventListener('click', speedDownClickHandler);
     inclineSlider.addEventListener('input', inclineChangeHandler);
     arrowBack.addEventListener('click', arrowBackHandler);
-    customBtn.addEventListener('click', customClickHandler);
+   // customBtn.addEventListener('click', customClickHandler);
 
     //eventlisteners modes
     walkBtn?.addEventListener('click', () => setWorkoutMode("walk"));
@@ -61,13 +61,17 @@ function startClickHandler() {
 }
 
 function pauseClickHandler() {
-    // Pauzeer: stop alleen de timer, maar houd waardes bij
     if (isRunning) {
         isRunning = false;
         console.log("Workout gepauzeerd.");
         stopCountdown(); // timer stoppen
+
+        // Zet de speed op 0 tijdens de pauze
+        speed = 0;
+        updateSpeedDisplay();
     }
 }
+
 
 function customClickHandler(){
     console.log("U heeft de custom optie gekozen")
@@ -93,7 +97,8 @@ function stopClickHandler() {
     updateSpeedDisplay();
     updateInclineDisplay();
     updateTimerDisplay();
-    updateProgressBar(0);
+    updateProgressBar(0)
+    updateRunnerPosition();
     displayResults()
 }
 
@@ -170,6 +175,8 @@ function startCountdown(timeInSeconds) {
             countdownTime--;
             updateTimerDisplay();
             updateProgressBar();
+            updateRunnerPosition();
+
         } else {
             console.log("Countdown klaar!");
             stopCountdown();
@@ -197,6 +204,21 @@ function updateSpeedDisplay() {
     const speedEl = document.getElementById('speedValue');
     if (speedEl) {
         speedEl.textContent = speed.toFixed(1);
+    }
+
+    // Runner-animatie veranderen op basis van de speed
+    const runnerEl = document.getElementById('runner');
+    if (runnerEl) {
+        if (speed === 0) {
+            // Bij speed=0 => idle-animatie
+            runnerEl.src = "img/idle.gif";
+        } else if (speed < 5) {
+            // Bij speed tussen 1 en 4 => walking
+            runnerEl.src = "img/walking.gif";
+        } else {
+            // Bij speed >=5 => running
+            runnerEl.src = "img/runner.gif";
+        }
     }
 }
 
@@ -227,3 +249,22 @@ function displayResults(){
     //Zet hierin de resultaten nadat je je workout heb gedaan
     //Tijd verstreken, welke workout je deed met welke standen etc etc
 }
+
+function updateRunnerPosition() {
+    const runner = document.getElementById('runner');
+    if (!runner) return;
+    if (workoutTotalTime === 0) {
+        runner.style.left = "0px";
+        return;
+    }
+
+
+    const fraction = (workoutTotalTime - countdownTime) / workoutTotalTime;
+
+    // We bewegen de renner in % van de containerbreedte.
+    const percentMovement = fraction * 90;
+
+    // Runner links in percentages
+    runner.style.left = percentMovement + "%";
+}
+
