@@ -92,6 +92,7 @@ function stopClickHandler() {
     updateInclineDisplay();
     updateTimerDisplay();
     updateProgressBar(0);
+    displayResults()
 }
 
 function speedUpClickHandler(e) {
@@ -170,6 +171,7 @@ function startCountdown(timeInSeconds) {
         } else {
             console.log("Countdown klaar!");
             stopCountdown();
+            displayResults();
         }
     }, 1000);
 }
@@ -216,4 +218,8 @@ function updateProgressBar() {
     const percentage = fraction * 100;
 
     progressEl.style.width = percentage + "%";
+}
+
+function displayResults(){
+    console.log("display the results, not coded yet")
 }
