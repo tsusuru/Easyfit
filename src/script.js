@@ -12,10 +12,12 @@ function init() {
     // buttons
     const startBtn       = document.getElementById('startBtn');
     const stopBtn        = document.getElementById('stopBtn');
+    const pauseBtn      = document.getElementById('pauseBtn');
     const speedUpBtn     = document.getElementById('speedUpBtn');
     const speedDownBtn   = document.getElementById('speedDownBtn');
     const inclineSlider  = document.getElementById('inclineSlider');
     const arrowBack      = document.getElementById('arrowBack');
+    const customBtn = document.getElementById('customBtn');
 
     //modes
     const walkBtn   = document.getElementById('walkModeBtn');
@@ -25,10 +27,12 @@ function init() {
     //eventlisteners buttons
     startBtn.addEventListener('click', startClickHandler);
     stopBtn.addEventListener('click', stopClickHandler);
+    pauseBtn.addEventListener('click', pauseClickHandler);
     speedUpBtn.addEventListener('click', speedUpClickHandler);
     speedDownBtn.addEventListener('click', speedDownClickHandler);
     inclineSlider.addEventListener('input', inclineChangeHandler);
     arrowBack.addEventListener('click', arrowBackHandler);
+    customBtn.addEventListener('click', customClickHandler);
 
     //eventlisteners modes
     walkBtn?.addEventListener('click', () => setWorkoutMode("walk"));
@@ -56,14 +60,38 @@ function startClickHandler() {
     }
 }
 
-function stopClickHandler() {
+function pauseClickHandler() {
+    // Pauzeer: stop alleen de timer, maar houd waardes bij
     if (isRunning) {
         isRunning = false;
-        console.log("Workout gestopt.");
-
-
-        stopCountdown();
+        console.log("Workout gepauzeerd.");
+        stopCountdown(); // timer stoppen
     }
+}
+
+function customClickHandler(){
+    console.log("U heeft de custom optie gekozen")
+}
+
+function stopClickHandler() {
+    // Reset alles
+    console.log("Workout volledig gestopt en gereset.");
+    isRunning = false;
+
+    // Reset waardes
+    speed = 0;
+    incline = 0;
+    countdownTime = 0;
+    workoutTotalTime = 0;
+
+    // Timer uit
+    stopCountdown();
+
+    // UI updaten
+    updateSpeedDisplay();
+    updateInclineDisplay();
+    updateTimerDisplay();
+    updateProgressBar(0);
 }
 
 function speedUpClickHandler(e) {
