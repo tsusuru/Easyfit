@@ -13,8 +13,9 @@ main {
     display: flex;
 }
 
-.start-stop img {
-    
+.startBtn {
+    max-width: 100px;
 }
+
 
 
