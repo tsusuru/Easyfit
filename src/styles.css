@@ -9,12 +9,16 @@ html {
     box-sizing: border-box;
 }
 
-main {
-    display: flex;
-}
-
 .startBtn {
     max-width: 100px;
+}
+
+.stopBtn {
+    max-width: 100px;
+}
+
+.pauseBtn {
+    max-width: 200px;
 }
 
 
