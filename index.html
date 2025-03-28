@@ -9,7 +9,7 @@
     <link href="src/output.css" rel="stylesheet">
     <title>Document</title>
 </head>
-<body class="m-0 p-0">
+<body class="m-0 p-0 h-screen">
 
 <nav>
     <div class="nav-bar flex justify-center p-4">
@@ -19,14 +19,14 @@
 
 
 <header>
-    <div class="header-container flex border-t-4">
-        <section class="flex-col current-workout min-w-1/4 min-h-80 bg-cyan-200">
+    <div class="header-container flex border-t-4 min-h-150">
+        <section class="flex-col current-workout min-w-1/4 bg-cyan-200">
 
             <div>
-                <h2 class="text-center">Huidige Activiteit</h2>
+                <h2 class="text-center text-3xl pt-12 pb-12">Huidige Activiteit</h2>
             </div>
             <div>
-                <h3 class="text-center">Wandelen</h3>
+                <h3 class="text-center text-2xl">Wandelen</h3>
             </div>
             <div class="flex justify-center align-middle">
                 <img class="max-w-3/4 justify-center" src="img/Start_Button.png" alt="Huidige Activiteit pictogram.">
@@ -51,9 +51,9 @@
     </div>
 </header>
 
-<main class="flex justify-center">
+<main class="flex justify-around w-full h-100">
 
-    <section class="incline flex">
+    <section class="incline flex min-w-1/5 bg-amber-200 justify-between">
         <div class="incline-left">
             <h2>
                 Incline
@@ -71,35 +71,35 @@
         </div>
     </section>
 
-    <section class="playModes">
-        <section class="start-stop flex">
+    <section class="playModes min-w-1/4 bg-amber-200">
+        <section class="start-stop flex justify-between">
             <div class="start-column flex-col">
-                <h2 class="align-middle">
+                <h2 class="text-center text-3xl">
                     Start
                 </h2>
                 <img src="img/Start_Button.png" alt="Start Button" class="startBtn">
             </div>
+
             <div class="stop-column flex-col">
-                <h2 class="align-middle">
+                <h2 class="text-center text-3xl">
                     Stop
                 </h2>
                 <img src="img/Stop_Button.png" alt="Stop Button" class="stopBtn">
             </div>
         </section>
 
-        <section class="pause">
-            <img src="img/Pause_Button.png" alt="Pause Button" class="pauseBtn">
+        <section class="pause flex justify-center">
+            <img src="img/Pause_Button.png" alt="Pause Button" class="pauseBtn w-50">
         </section>
     </section>
 
 
-
-    <section class="speed flex">
-        <div class="speed-left">
-            <h2>
+    <section class="speed flex min-w-1/5 bg-amber-200 justify-between">
+        <div class="speed-left flex flex-col w-[19.5rem]">
+            <h2 class="pb-4 text-center text-4xl">
                 Speed
             </h2>
-            <h3 class="speed-counter">
+            <h3 id="speed-counter " class="pb-4">
                 0.0
             </h3>
             <img src="" alt="Speed Pictogram">
