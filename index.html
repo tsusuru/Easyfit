@@ -19,12 +19,33 @@
 
 
 <header>
-    <div class="header-container">
-        <section class="current-workout">
+    <div class="header-container flex border-t-4">
+        <section class="flex-col current-workout min-w-1/4 min-h-80 bg-cyan-200">
+
+            <div>
+                <h2 class="text-center">Huidige Activiteit</h2>
+            </div>
+            <div>
+                <h3 class="text-center">Wandelen</h3>
+            </div>
+            <div class="flex justify-center align-middle">
+                <img class="max-w-3/4 justify-center" src="img/Start_Button.png" alt="Huidige Activiteit pictogram.">
+            </div>
 
         </section>
 
-        <section class="workout-display">
+        <section class="flex flex-col items-center justify-center workout-display min-w-3/4 bg-amber-200">
+
+            <div id="timeDisplay" class="w-80 h-20 flex flex-col items-center justify-center border-2 rounded-xl">
+                <h2 class="text-3xl">12:34</h2>
+                <p>Overige tijd</p>
+            </div>
+            <div id="progressFill" class="w-80 h-20 border-2 rounded-xl">
+
+            </div>
+            <div id="running-track" class="w-full h-55 border-2 rounded-xl">
+
+            </div>
 
         </section>
     </div>
@@ -58,7 +79,7 @@
                 </h2>
                 <img src="img/Start_Button.png" alt="Start Button" class="startBtn">
             </div>
-            <div class="stop-column">
+            <div class="stop-column flex-col">
                 <h2 class="align-middle">
                     Stop
                 </h2>
