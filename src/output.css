@@ -15,6 +15,9 @@
     --text-3xl--line-height: calc(2.25 / 1.875);
     --text-4xl: 2.25rem;
     --text-4xl--line-height: calc(2.5 / 2.25);
+    --text-7xl: 4.5rem;
+    --text-7xl--line-height: 1;
+    --font-weight-bold: 700;
     --radius-xl: 0.75rem;
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
@@ -166,24 +169,11 @@
   .m-0 {
     margin: calc(var(--spacing) * 0);
   }
+  .mb-20 {
+    margin-bottom: calc(var(--spacing) * 20);
+  }
   .flex {
     display: flex;
-  }
-  .table {
-    display: table;
-  }
-  .size-full {
-    width: 100%;
-    height: 100%;
-  }
-  .h-1 {
-    height: calc(var(--spacing) * 1);
-  }
-  .h-1\/3 {
-    height: calc(1/3 * 100%);
-  }
-  .h-1\/4 {
-    height: calc(1/4 * 100%);
   }
   .h-20 {
     height: calc(var(--spacing) * 20);
@@ -191,20 +181,8 @@
   .h-55 {
     height: calc(var(--spacing) * 55);
   }
-  .h-60 {
-    height: calc(var(--spacing) * 60);
-  }
-  .h-80 {
-    height: calc(var(--spacing) * 80);
-  }
   .h-100 {
     height: calc(var(--spacing) * 100);
-  }
-  .h-\[31\.25\] {
-    height: 31.25;
-  }
-  .h-\[31\.25rem\] {
-    height: 31.25rem;
   }
   .h-full {
     height: 100%;
@@ -212,35 +190,8 @@
   .h-screen {
     height: 100vh;
   }
-  .max-h-56 {
-    max-height: calc(var(--spacing) * 56);
-  }
-  .max-h-72 {
-    max-height: calc(var(--spacing) * 72);
-  }
-  .max-h-100 {
-    max-height: calc(var(--spacing) * 100);
-  }
-  .max-h-160 {
-    max-height: calc(var(--spacing) * 160);
-  }
-  .max-h-200 {
-    max-height: calc(var(--spacing) * 200);
-  }
-  .min-h-80 {
-    min-height: calc(var(--spacing) * 80);
-  }
-  .min-h-100 {
-    min-height: calc(var(--spacing) * 100);
-  }
   .min-h-150 {
     min-height: calc(var(--spacing) * 150);
-  }
-  .min-h-180 {
-    min-height: calc(var(--spacing) * 180);
-  }
-  .min-h-200 {
-    min-height: calc(var(--spacing) * 200);
   }
   .w-50 {
     width: calc(var(--spacing) * 50);
@@ -251,32 +202,14 @@
   .w-\[10rem\] {
     width: 10rem;
   }
-  .w-\[19\.5rem\] {
-    width: 19.5rem;
-  }
-  .w-\[26rem\] {
-    width: 26rem;
-  }
-  .w-\[30rem\] {
-    width: 30rem;
-  }
-  .w-\[31\.25rem\] {
-    width: 31.25rem;
-  }
-  .w-fit {
-    width: fit-content;
+  .w-\[20rem\] {
+    width: 20rem;
   }
   .w-full {
     width: 100%;
   }
-  .max-w-3 {
-    max-width: calc(var(--spacing) * 3);
-  }
   .max-w-3\/4 {
     max-width: calc(3/4 * 100%);
-  }
-  .min-w-1 {
-    min-width: calc(var(--spacing) * 1);
   }
   .min-w-1\/4 {
     min-width: calc(1/4 * 100%);
@@ -284,23 +217,11 @@
   .min-w-1\/5 {
     min-width: calc(1/5 * 100%);
   }
-  .min-w-3 {
-    min-width: calc(var(--spacing) * 3);
-  }
   .min-w-3\/4 {
     min-width: calc(3/4 * 100%);
   }
-  .border-collapse {
-    border-collapse: collapse;
-  }
-  .resize {
-    resize: both;
-  }
   .flex-col {
     flex-direction: column;
-  }
-  .content-between {
-    align-content: space-between;
   }
   .items-center {
     align-items: center;
@@ -308,22 +229,19 @@
   .justify-around {
     justify-content: space-around;
   }
-  .justify-between {
-    justify-content: space-between;
-  }
   .justify-center {
     justify-content: center;
   }
   .rounded-xl {
     border-radius: var(--radius-xl);
   }
-  .border {
-    border-style: var(--tw-border-style);
-    border-width: 1px;
-  }
   .border-2 {
     border-style: var(--tw-border-style);
     border-width: 2px;
+  }
+  .border-x-4 {
+    border-inline-style: var(--tw-border-style);
+    border-inline-width: 4px;
   }
   .border-t-4 {
     border-top-style: var(--tw-border-style);
@@ -338,8 +256,8 @@
   .p-0 {
     padding: calc(var(--spacing) * 0);
   }
-  .p-4 {
-    padding: calc(var(--spacing) * 4);
+  .px-30 {
+    padding-inline: calc(var(--spacing) * 30);
   }
   .pt-12 {
     padding-top: calc(var(--spacing) * 12);
@@ -368,13 +286,6 @@
     font-size: var(--text-4xl);
     line-height: var(--tw-leading, var(--text-4xl--line-height));
   }
-  .underline {
-    text-decoration-line: underline;
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
-  }
 }
 html {
   font-size: 62.5%;
@@ -391,13 +302,21 @@ html {
 .pauseBtn {
   max-width: 200px;
 }
+@layer components {
+  .tester {
+    font-size: var(--text-7xl);
+    line-height: var(--tw-leading, var(--text-7xl--line-height));
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
+    text-decoration-line: underline;
+  }
+}
 @property --tw-border-style {
   syntax: "*";
   inherits: false;
   initial-value: solid;
 }
-@property --tw-outline-style {
+@property --tw-font-weight {
   syntax: "*";
   inherits: false;
-  initial-value: solid;
 }
