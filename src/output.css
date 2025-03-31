@@ -169,11 +169,17 @@
   .m-0 {
     margin: calc(var(--spacing) * 0);
   }
+  .mb-2 {
+    margin-bottom: calc(var(--spacing) * 2);
+  }
   .mb-20 {
     margin-bottom: calc(var(--spacing) * 20);
   }
   .flex {
     display: flex;
+  }
+  .table {
+    display: table;
   }
   .h-20 {
     height: calc(var(--spacing) * 20);
@@ -193,6 +199,9 @@
   .min-h-150 {
     min-height: calc(var(--spacing) * 150);
   }
+  .w-20 {
+    width: calc(var(--spacing) * 20);
+  }
   .w-50 {
     width: calc(var(--spacing) * 50);
   }
@@ -202,14 +211,23 @@
   .w-\[10rem\] {
     width: 10rem;
   }
+  .w-\[19\.5rem\] {
+    width: 19.5rem;
+  }
   .w-\[20rem\] {
     width: 20rem;
   }
   .w-full {
     width: 100%;
   }
+  .max-w-3 {
+    max-width: calc(var(--spacing) * 3);
+  }
   .max-w-3\/4 {
     max-width: calc(3/4 * 100%);
+  }
+  .min-w-1 {
+    min-width: calc(var(--spacing) * 1);
   }
   .min-w-1\/4 {
     min-width: calc(1/4 * 100%);
@@ -217,8 +235,17 @@
   .min-w-1\/5 {
     min-width: calc(1/5 * 100%);
   }
+  .min-w-3 {
+    min-width: calc(var(--spacing) * 3);
+  }
   .min-w-3\/4 {
     min-width: calc(3/4 * 100%);
+  }
+  .border-collapse {
+    border-collapse: collapse;
+  }
+  .resize {
+    resize: both;
   }
   .flex-col {
     flex-direction: column;
@@ -229,11 +256,18 @@
   .justify-around {
     justify-content: space-around;
   }
+  .justify-between {
+    justify-content: space-between;
+  }
   .justify-center {
     justify-content: center;
   }
   .rounded-xl {
     border-radius: var(--radius-xl);
+  }
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
   }
   .border-2 {
     border-style: var(--tw-border-style);
@@ -255,6 +289,9 @@
   }
   .p-0 {
     padding: calc(var(--spacing) * 0);
+  }
+  .p-4 {
+    padding: calc(var(--spacing) * 4);
   }
   .px-30 {
     padding-inline: calc(var(--spacing) * 30);
@@ -286,6 +323,13 @@
     font-size: var(--text-4xl);
     line-height: var(--tw-leading, var(--text-4xl--line-height));
   }
+  .underline {
+    text-decoration-line: underline;
+  }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
 }
 html {
   font-size: 62.5%;
@@ -312,6 +356,11 @@ html {
   }
 }
 @property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-outline-style {
   syntax: "*";
   inherits: false;
   initial-value: solid;
