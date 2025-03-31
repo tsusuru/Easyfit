@@ -21,5 +21,11 @@ html {
     max-width: 200px;
 }
 
+@layer components {
 
+    .tester {
+        @apply text-7xl font-bold underline;
+    }
+
+}
 
