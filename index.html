@@ -12,8 +12,11 @@
 <body class="m-0 p-0 h-screen">
 
 <nav>
-    <div class="nav-bar flex justify-center p-4">
-        <h1 class="underline text-4xl">Time :D</h1>
+    <div class="nav-bar flex flex-col justify-center items-center">
+        <div class="border-x-4 px-30 h-full">
+        <h1 class="text-4xl">17:48</h1>
+        <p class="text-center text-2xl">Tijd</p>
+        </div>
     </div>
 </nav>
 
@@ -34,17 +37,17 @@
 
         </section>
 
-        <section class="flex flex-col items-center justify-center workout-display min-w-3/4 bg-amber-200">
+        <section class="flex flex-col items-center justify-around workout-display min-w-3/4 bg-amber-200">
 
             <div id="timeDisplay" class="w-80 h-20 flex flex-col items-center justify-center border-2 rounded-xl">
                 <h2 class="text-3xl">12:34</h2>
                 <p>Overige tijd</p>
             </div>
-            <div id="progressFill" class="w-80 h-20 border-2 rounded-xl">
+            <div id="progressFill" class="w-80 h-20 border-2 rounded-xl mb-20">
 
             </div>
-            <div id="running-track" class="w-full h-55 border-2 rounded-xl">
-
+            <div id="running-track" class="w-full h-55 border-2 rounded-xl flex items-center justify-center">
+                <p class="tester">Tailwind Testing</p>
             </div>
 
         </section>
@@ -53,8 +56,8 @@
 
 <main class="flex justify-around w-full h-100">
 
-    <section class="incline flex min-w-1/5 bg-amber-200 justify-between">
-        <div class="incline-left">
+    <section class="incline flex min-w-1/5 bg-amber-200 justify-around">
+        <div class="incline-left w-[10rem]">
             <h2>
                 Incline
             </h2>
@@ -63,7 +66,7 @@
             </h3>
             <img src="" alt="Incline Pictogram">
         </div>
-        <div class="incline-right">
+        <div class="incline-right w-[10rem]">
             <img src="" alt="Incline +">
 
             <label for="inclineSlider" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></label>
@@ -74,7 +77,7 @@
     </section>
 
     <section class="playModes min-w-1/4 bg-amber-200">
-        <section class="start-stop flex justify-between">
+        <section class="start-stop flex justify-around">
             <div class="start-column flex-col">
                 <h2 class="text-center text-3xl">
                     Start
@@ -96,9 +99,9 @@
     </section>
 
 
-    <section class="speed flex min-w-1/5 bg-amber-200 justify-between">
-        <div class="speed-left flex flex-col w-[19.5rem]">
-            <h2 class="pb-4 text-center text-4xl">
+    <section class="speed flex min-w-1/5 bg-amber-200 justify-around">
+        <div class="speed-left flex flex-col">
+            <h2 class="pb-4 text-center text-4xl w-[20rem]">
                 Speed
             </h2>
             <h3 id="speed-counter " class="pb-4">
