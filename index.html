@@ -22,7 +22,6 @@
         <div>
             <img src="img/Start_Button.png" alt="Start Button" class="startBtn w-[4rem]">
         </div>
-    </div>
 </nav>
 
 
@@ -62,24 +61,24 @@
 <main class="flex justify-around w-full h-100 bg-[#2B2B2B] border-t-8 border-[#40E0D0]">
 
     <section class="incline flex min-w-1/5 justify-around border-x-4 bg-[#2B2B2B] border-[#40E0D0]">
-        <div class="incline-left w-[10rem] flex items-center">
-            <h2>
-                Heuvel
-            </h2>
-            <h3 id="inclineCounter">
-                0.0
-            </h3>
-            <img src="" alt="Incline Pictogram">
+        <div class="incline-left w-[10rem] flex flex-col items-center justify-center">
+            <h2 class="text-lg font-bold text-[(20vw,20rem)]">Incline</h2>
+            <h3 id="inclineCounter" class="text-3xl">0.0</h3>
+            <img src="" alt="Incline Pictogram" class="w-6 h-6" />
         </div>
-        <div class="incline-right w-[10rem] flex items-center flex-col justify-center h-full space-between">
-            <div class="flex justify-between flex-col flex-wrap content-between">
-            <img src="" alt="Incline +" class="">
 
-            <label for="inclineSlider"></label>
-            <input id="inclineSlider" type="range" min="0" max="10" step="0.1" value="0" class="-rotate-90 w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
-
-            <img src="" alt="Incline -">
-            </div>
+        <div class="incline-right w-[10rem] flex flex-col items-center justify-between h-full">
+            <img src="" alt="Incline +" class="w-6 h-6" />
+            <input
+                    id="inclineSlider"
+                    type="range"
+                    min="0"
+                    max="10"
+                    step="0.1"
+                    value="0"
+                    class="-rotate-90 w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+            />
+            <img src="" alt="Incline -" class="w-6 h-6" />
         </div>
     </section>
 
@@ -114,12 +113,14 @@
             <h3 id="speed-counter" class="pb-4 text-center text-3xl">
                 0.0
             </h3>
-            <img src="img/running-shoes.png" alt="Speed Pictogram" class="speedPictogram w-[6rem]">
+            <div class="flex justify-center align-middle">
+                <img src="img/running-shoes.png" alt="Speed Pictogram" class="speedPictogram w-[15rem]">
+            </div>
         </div>
 
-        <div class="speed-right">
+        <div class="speed-right justify-around align-middle mt-10">
                 <img src="img/speedUpButton.png" alt="speed-up button" class="speedUpBtn w-30">
-                <img src="img/speedDownButton.png" alt="speed-down button" class="speedDownBtn mt-5 w-30">
+                <img src="img/speedDownButton.png" alt="speed-down button" class="speedDownBtn mt-10 w-30">
         </div>
     </section>
 </main>
