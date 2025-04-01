@@ -28,10 +28,10 @@
         <section class="flex-col current-workout min-w-1/4 bg-[#2B2B2B] border-r-4 border-[#40E0D0]">
 
             <div>
-                <h2 class="text-center text-3xl pt-12 pb-12">Ik ben aan het</h2>
+                <h2 class="text-center text-3xl pt-12 pb-12">Huidige Activiteit</h2>
             </div>
             <div>
-                <h3 class="text-center text-2xl">*Activiteit*</h3>
+                <h3 class="text-center text-2xl">Wandelen</h3>
             </div>
             <div class="flex justify-center align-middle">
                 <img class="max-w-3/4 justify-center" src="img/Start_Button.png" alt="Huidige Activiteit pictogram.">
@@ -39,15 +39,16 @@
 
         </section>
 
-        <section class="flex flex-col items-center justify-around workout-display min-w-3/4 bg-amber-200">
+        <section class="flex flex-col items-center justify-around workout-display min-w-3/4 bg-[#2B2B2B]">
 
-            <div id="timeDisplay" class="w-80 h-20 flex flex-col items-center justify-center border-2 rounded-xl">
+            <div id="timeDisplay" class="w-80 h-20 flex flex-col items-center justify-center border-2 rounded-xl border-[#40E0D0]">
                 <h2 class="text-3xl">12:34</h2>
                 <p>Overige tijd</p>
             </div>
-            <div id="progressFill" class="w-80 h-20 border-2 rounded-xl mb-20">
+            <div id="progressFill" class="w-80 h-20 border-2 rounded-xl mb-20 border-[#40E0D0]">
+
             </div>
-            <div id="running-track" class="w-full h-55 border-2 rounded-xl flex items-center justify-center">
+            <div id="running-track" class="w-full h-55 border-2 rounded-xl flex items-center justify-center border-[#40E0D0]">
                 <p class="tester">Bro.....</p>
             </div>
 
@@ -55,8 +56,9 @@
     </div>
 </header>
 
-<main class="flex justify-around w-full h-100">
-    <section class="incline flex min-w-1/5 bg-amber-200 justify-around">
+<main class="flex justify-around w-full h-100 bg-[#2B2B2B] border-t-8 border-[#40E0D0]">
+
+    <section class="incline flex min-w-1/5 justify-around border-x-4 bg-[#2B2B2B] border-[#40E0D0]">
         <div class="incline-left w-[10rem] flex items-center">
             <h2>
                 Heuvel
@@ -78,7 +80,7 @@
         </div>
     </section>
 
-    <section class="playModes min-w-1/4 bg-amber-200">
+    <section class="playModes min-w-1/4 border-x-4 bg-[#2B2B2B] border-[#40E0D0]">
         <section class="start-stop flex justify-around">
             <div class="start-column flex-col">
                 <h2 class="text-center text-3xl">
@@ -101,7 +103,7 @@
     </section>
 
 
-    <section class="speed flex min-w-1/5 bg-[#2B2B2B] justify-around">
+    <section class="speed flex min-w-1/5 justify-around border-x-4 bg-[#2B2B2B] border-[#40E0D0]">
         <div class="speed-left flex flex-col">
             <h2 class="pb-4 text-center text-4xl w-[20rem]">
                 Snelheid
@@ -109,7 +111,7 @@
             <h3 id="speed-counter" class="pb-4 text-center text-3xl">
                 0.0
             </h3>
-            <img src="img/running-shoes.png" alt="Speed Pictogram" class="speedPictogram w-45">
+            <img src="img/running-shoes.png" alt="Speed Pictogram">
         </div>
 
         <div class="speed-right">

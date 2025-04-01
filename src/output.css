@@ -308,6 +308,10 @@
     border-style: var(--tw-border-style);
     border-width: 2px;
   }
+  .border-x-2 {
+    border-inline-style: var(--tw-border-style);
+    border-inline-width: 2px;
+  }
   .border-x-4 {
     border-inline-style: var(--tw-border-style);
     border-inline-width: 4px;
@@ -316,9 +320,21 @@
     border-top-style: var(--tw-border-style);
     border-top-width: 4px;
   }
+  .border-t-8 {
+    border-top-style: var(--tw-border-style);
+    border-top-width: 8px;
+  }
   .border-r-4 {
     border-right-style: var(--tw-border-style);
     border-right-width: 4px;
+  }
+  .border-b-4 {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 4px;
+  }
+  .border-b-8 {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 8px;
   }
   .border-\[\#40E0D0\] {
     border-color: #40E0D0;
