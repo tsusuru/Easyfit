@@ -24,7 +24,7 @@ html {
 @layer components {
 
     .tester {
-        @apply text-7xl font-bold underline;
+        @apply text-7xl font-bold underline rotate-90;
     }
 
 }
