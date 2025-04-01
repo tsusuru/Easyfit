@@ -117,6 +117,7 @@ function speedDownClickHandler(e) {
 }
 
 function inclineChangeHandler(e) {
+    console.log("Slider changed:", e.target.value);
     incline = parseFloat(e.target.value);
     updateInclineDisplay();
     console.log("Incline veranderd ->", incline);
