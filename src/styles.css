@@ -3,6 +3,7 @@
 
 html {
     font-size:64%;
+    color: #fff8d4;
 }
 
 * {
@@ -21,9 +22,6 @@ html {
     max-width: 200px;
 }
 
-h2 {
-    color: #fff8d4;
-}
 
 @layer components {
 
