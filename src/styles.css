@@ -21,6 +21,10 @@ html {
     max-width: 200px;
 }
 
+h2 {
+    color: #fff8d4;
+}
+
 @layer components {
 
     .tester {
