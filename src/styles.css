@@ -2,7 +2,7 @@
 /* npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch */
 
 html {
-    font-size:62.5%;
+    font-size:64%;
 }
 
 * {
