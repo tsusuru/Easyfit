@@ -225,8 +225,14 @@
   .w-\[4rem\] {
     width: 4rem;
   }
+  .w-\[6rem\] {
+    width: 6rem;
+  }
   .w-\[10rem\] {
     width: 10rem;
+  }
+  .w-\[15rem\] {
+    width: 15rem;
   }
   .w-\[20rem\] {
     width: 20rem;
