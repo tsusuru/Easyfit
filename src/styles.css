@@ -3,6 +3,7 @@
 
 html {
     font-size:64%;
+    color: #fff8d4;
 }
 
 * {
@@ -20,6 +21,7 @@ html {
 .pauseBtn {
     max-width: 200px;
 }
+
 
 @layer components {
 
