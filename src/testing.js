@@ -23,6 +23,7 @@ function init() {
     speedUpBtn?.addEventListener('click', speedUpClickHandler);
     speedDownBtn?.addEventListener('click', speedDownClickHandler);
     inclineSlider?.addEventListener('input', inclineChangeHandler);
+    inclineSlider?.addEventListener('input', updateInclineRotation);
 
     // Initial UI updates
     updateSpeedDisplay();
