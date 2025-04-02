@@ -198,6 +198,14 @@ function inclineChangeHandler(event) {
     console.log("Incline changed to:", incline);
 }
 
+function updateInclineRotation() {
+    const rotatingElement = document.getElementById('rotatingDiv');
+    if (rotatingElement) {
+        rotatingElement.style.transform = `rotate(${incline * 2}deg)`;
+    }
+}
+
+
 function updateCurrentTime() {
     const currentTimeEl = document.querySelector('.border-x-4 h1');
     if (!currentTimeEl) return;
