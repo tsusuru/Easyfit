@@ -202,7 +202,7 @@ function inclineChangeHandler(event) {
 function updateInclineRotation() {
     const rotatingElement = document.getElementById('rotatingDiv');
     if (rotatingElement) {
-        rotatingElement.style.transform = `rotate(${incline * 2}deg)`;
+        rotatingElement.style.transform = `rotate(${incline * -0.5}deg)`;
     }
 }
 
