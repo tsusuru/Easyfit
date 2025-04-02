@@ -30,6 +30,9 @@ function init() {
     updateTimerDisplay();
     updateProgressBar(0);
     console.log("init() -> Event listeners set.");
+
+    updateCurrentTime();
+    setInterval(updateCurrentTime, 1000);
 }
 
 function startClickHandler() {
@@ -47,15 +50,12 @@ function startClickHandler() {
 }
 
 function updateTimerDisplay() {
-    const timeEl = document.querySelector('.border-x-4 h1');
     const timeDisplayEl = document.querySelector('#timeDisplay h2');
-    if (!timeEl || !timeDisplayEl) return;
+    if (!timeDisplayEl) return;
 
     const minutes = Math.floor(countdownTime / 60);
     const seconds = countdownTime % 60;
     const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-
-    timeEl.textContent = timeString;
     timeDisplayEl.textContent = timeString;
 }
 
@@ -196,4 +196,14 @@ function inclineChangeHandler(event) {
     incline = parseFloat(event.target.value);
     updateInclineDisplay();
     console.log("Incline changed to:", incline);
+}
+
+function updateCurrentTime() {
+    const currentTimeEl = document.querySelector('.border-x-4 h1');
+    if (!currentTimeEl) return;
+
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    currentTimeEl.textContent = `${hours}:${minutes}`;
 }
