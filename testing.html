@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script src="src/script.js" defer></script>
+    <title>Treadmill Workout</title>
+    <style>
+        /* Custom styles to complement Bulma */
+        .border-turquoise {
+            border-color: #40E0D0 !important;
+        }
+        .bg-dark {
+            background-color: #2B2B2B !important;
+        }
+        .text-turquoise {
+            color: #40E0D0 !important;
+        }
+        .vertical-slider {
+            transform: rotate(-90deg);
+            width: 200px;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body class="has-background-dark has-text-white">
+    <nav class="p-3 bg-dark">
+        <div id="arrowBack" class="is-clickable px-3">←</div>
+        <div class="columns is-vcentered is-mobile">
+            <div class="column"></div>
+            <div class="column has-text-centered">
+                <div class="box has-background-dark border-turquoise" style="border: 4px solid">
+                    <!-- Time of day display -->
+                    <h1 class="title is-2 has-text-white currentTime">17:48</h1>
+                    <p class="subtitle is-4 has-text-white">Tijd</p>
+                </div>
+            </div>
+            <div class="column has-text-right">
+                <img src="img/Start_Button.png" alt="Start Button" class="startBtn image is-64x64">
+            </div>
+        </div>
+    </nav>
+
+    <div class="columns is-gapless m-0">
+        <div class="column is-one-quarter has-background-dark border-turquoise" style="border-right: 4px solid">
+            <div class="has-text-centered py-6">
+                <h2 class="title is-3 has-text-white">Huidige Activiteit</h2>
+                <h3 class="subtitle is-4 has-text-white">Wandelen</h3>
+                <img class="image is-128x128 is-inline-block" src="img/Start_Button.png" alt="Activity Icon">
+            </div>
+        </div>
+
+        <div class="column has-background-dark">
+            <div class="section">
+                <div class="container">
+                    <div id="timeDisplay" class="box has-background-dark border-turquoise has-text-centered mb-6">
+                        <!-- Workout timer -->
+                        <h2 class="title is-3 has-text-white">12:34</h2>
+                        <p class="subtitle is-5 has-text-white">Overige tijd</p>
+                    </div>
+
+                    <div class="box has-background-dark border-turquoise mb-6">
+                        <!-- Progress bar container -->
+                        <div id="progressFill" style="height: 20px; background-color: #40E0D0; width: 0%"></div>
+                    </div>
+
+                    <div id="running-track" class="box has-background-dark border-turquoise has-text-centered">
+                        <!-- Runner element -->
+                        <img id="runner" src="img/idle.gif" alt="Runner" style="position: relative; left: 0%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns is-gapless m-0 border-turquoise" style="border-top: 8px solid">
+        <div class="column is-one-fifth has-background-dark border-turquoise" style="border-right: 4px solid">
+            <div class="has-text-centered py-4">
+                <h2 class="title is-3 has-text-white">Incline</h2>
+                <h3 id="inclineCounter" class="title is-1 has-text-white">0.0</h3>
+                <img src="img/mountain.png" alt="Incline Icon" class="image is-96x96 is-inline-block">
+                <input id="inclineSlider" type="range" min="0" max="10" step="0.1" value="0" class="vertical-slider">
+            </div>
+        </div>
+
+        <div class="column is-one-third has-background-dark border-turquoise" style="border-right: 4px solid">
+            <div class="columns is-mobile p-4">
+                <div class="column has-text-centered">
+                    <h2 class="title is-4 has-text-white">Start</h2>
+                    <img src="img/Start_Button.png" alt="Start Button" class="startBtn image is-96x96 is-inline-block">
+                </div>
+                <div class="column has-text-centered">
+                    <h2 class="title is-4 has-text-white">Stop</h2>
+                    <img src="img/Stop_Button.png" alt="Stop Button" class="stopBtn image is-96x96 is-inline-block">
+                </div>
+            </div>
+            <div class="has-text-centered">
+                <img src="img/Pause_Button2.png" alt="Pause Button" class="pauseBtn image is-128x128 is-inline-block">
+            </div>
+            <div class="buttons is-centered mt-4">
+                <button id="walkModeBtn" class="button is-info">Walk</button>
+                <button id="sprintModeBtn" class="button is-info">Sprint</button>
+                <button id="hillModeBtn" class="button is-info">Hill</button>
+            </div>
+        </div>
+
+        <div class="column has-background-dark border-turquoise" style="border-right: 4px solid">
+            <div class="column has-text-centered py-4">
+                <h2 class="title is-3 has-text-white">Snelheid</h2>
+                <!-- Changed from speed-counter to speedValue -->
+                <h3 id="speedValue" class="title is-1 has-text-white">0.0</h3>
+                <img src="img/running-shoes.png" alt="Speed Icon" class="image is-96x96 is-inline-block">
+                <div class="buttons is-centered mt-4">
+                    <img src="img/speedUpButton.png" alt="Speed Up" class="speedUpBtn image is-64x64">
+                    <img src="img/speedDownButton.png" alt="Speed Down" class="speedDownBtn image is-64x64">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
