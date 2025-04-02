@@ -457,6 +457,9 @@
   .outline-\[\#ffffff\] {
     outline-color: #ffffff;
   }
+  .outline-\[blue\] {
+    outline-color: blue;
+  }
   .dark\:bg-gray-700 {
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-gray-700);
