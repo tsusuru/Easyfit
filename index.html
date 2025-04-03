@@ -28,7 +28,7 @@
 
 <header>
     <div class="header-container flex border-t-4 min-h-150 border-[#40E0D0]">
-        <section class="flex-col current-workout min-w-1/4 bg-[#2B2B2B] border-r-4 border-[#40E0D0]">
+        <section class="flex-col current-workout min-w-1/4 justify-around bg-[#2B2B2B] border-r-4 border-[#40E0D0]">
 
             <div>
                 <h2 class="text-center text-3xl pt-12 pb-12">Ik ben aan het:</h2>
@@ -37,7 +37,7 @@
                 <h3 class="text-center text-2xl">Rennen</h3>
             </div>
             <div class="flex justify-center align-middle">
-                <img class="max-w-3/4 justify-center" src="img/running_pictogram.png" alt="Huidige Activiteit pictogram.">
+                <img class="max-w-3/4 justify-center pb-4" src="img/running_pictogram.png" alt="Huidige Activiteit pictogram.">
             </div>
 
         </section>
@@ -46,7 +46,7 @@
 
             <div id="timeDisplay" class="w-80 h-20 flex flex-col items-center justify-center border-2 rounded-xl border-[#40E0D0]">
                 <h2 class="text-3xl">12:34</h2>
-                <p>Overige tijd</p>
+                <p class="text-3xl">Overige tijd</p>
             </div>
             <div id="progressFill" class="w-80 h-20 border-2 rounded-xl mb-20 border-[#40E0D0]">
 
@@ -91,19 +91,23 @@
                 <h2 class="text-center text-3xl">
                     Start
                 </h2>
-                <img src="img/Start_Button.png" alt="Start Button" class="startBtn" id="startBtn">
+                <div class="startBtn">
+                <img src="img/Start_Button.png" alt="Start Button" class="Btn w-[10rem]" id="startBtn">
+                </div>
             </div>
 
             <div class="stop-column flex-col">
                 <h2 class="text-center text-3xl">
                     Stop
                 </h2>
-                <img src="img/Stop_Button.png" alt="Stop Button" class="stopBtn" id="stopBtn">
+                <div class="stopBtn">
+                <img src="img/Stop_Button.png" alt="Stop Button" class="Btn w-[10rem]" id="stopBtn">
+                </div>
             </div>
         </section>
 
-        <section class="pause flex justify-center">
-            <img src="img/Pause_Button2.png" alt="Pause Button" class="pauseBtn mt-10 w-80" id="pauseBtn">
+        <section class="flex justify-center">
+            <img src="img/Pause_Button2.png" alt="Pause Button" class="Btn mt-10 w-80" id="pauseBtn">
         </section>
     </section>
 
@@ -122,8 +126,12 @@
         </div>
 
         <div class="speed-right justify-around align-middle mt-10">
-                <img src="img/speedUpButton.png" alt="speed-up button" class="speedUpBtn w-30" id="speedUpBtn">
-                <img src="img/speedDownButton.png" alt="speed-down button" class="speedDownBtn mt-10 w-30" id="speedDownBtn">
+            <div class="speedUpBtn">
+                <img src="img/speedUpButton.png" alt="speed-up button" class="Btn w-30" id="speedUpBtn">
+            </div>
+            <div class="speedDownBtn">
+                <img src="img/speedDownButton.png" alt="speed-down button" class="Btn mt-10 w-30" id="speedDownBtn">
+            </div>
         </div>
     </section>
 </main>

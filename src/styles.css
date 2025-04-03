@@ -18,8 +18,9 @@ html {
     max-width: 100px;
 }
 
-.pauseBtn {
+.Btn {
     max-width: 200px;
+    transition: all 0.3s ease-in;
 }
 
 
@@ -28,6 +29,21 @@ html {
     .tester {
         @apply text-7xl font-bold underline;
     }
+
+    .Btn.active {
+        transform: scale(1.2);
+        background-color: inherit;
+        transition: all 0.3s ease;
+        overflow: auto;
+        opacity: 75%;
+    }
+
+
+    .speedUpBtn.active, .speedDownBtn.active, .startBtn.active, .stopBtn.active {
+        transform: scale(1.2);
+        border-color: white;
+    }
+
 
 }
 

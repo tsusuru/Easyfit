@@ -9,15 +9,15 @@ let countdownInterval = null;
 
 function init() {
     // buttons - using querySelector for class-based selection
-    const startBtns = document.querySelectorAll('.startBtn');
-    const stopBtn = document.querySelector('.stopBtn');
-    const pauseBtn = document.querySelector('.pauseBtn');
-    const speedUpBtn = document.querySelector('.speedUpBtn');
-    const speedDownBtn = document.querySelector('.speedDownBtn');
+    const startBtns       = document.getElementById('startBtn');
+    const stopBtn        = document.getElementById('stopBtn');
+    const pauseBtn      = document.getElementById('pauseBtn');
+    const speedUpBtn     = document.getElementById('speedUpBtn');
+    const speedDownBtn   = document.getElementById('speedDownBtn');
     const inclineSlider = document.getElementById('inclineSlider');
 
     // Add event listeners to all start buttons
-    startBtns.forEach(btn => btn.addEventListener('click', startClickHandler));
+    startBtns?.addEventListener('click', startClickHandler);
     stopBtn?.addEventListener('click', stopClickHandler);
     pauseBtn?.addEventListener('click', pauseClickHandler);
     speedUpBtn?.addEventListener('click', speedUpClickHandler);
@@ -47,6 +47,9 @@ function startClickHandler() {
         }
 
         startCountdown(countdownTime);
+
+        startBtn.classList.add("active");
+        setTimeout(() => startBtn.classList.remove("active"), 200);
     }
 }
 
@@ -63,7 +66,7 @@ function updateTimerDisplay() {
 function updateSpeedDisplay() {
     const speedEl = document.getElementById('speed-counter');
     if (speedEl) {
-        speedEl.textContent = speed.toFixed(1);
+        speedEl.textContent = speed.toFixed(0);
     }
 }
 
@@ -159,6 +162,9 @@ function stopClickHandler() {
         updateTimerDisplay();
         updateProgressBar();
         console.log("Workout stopped");
+
+        stopBtn.classList.add("active");
+        setTimeout(() => stopBtn.classList.remove("active"), 200);
     }
 }
 
@@ -169,27 +175,35 @@ function pauseClickHandler() {
             clearInterval(countdownInterval);
             countdownInterval = null;
         }
+        pauseBtn.classList.add("active");
         console.log("Workout paused");
     } else if (countdownTime > 0) {
         isRunning = true;
         startCountdown(countdownTime);
+        pauseBtn.classList.remove("active");
         console.log("Workout resumed");
     }
 }
 
 function speedUpClickHandler() {
     if (speed < 20) {
-        speed += 0.5;
+        speed += 1;
         updateSpeedDisplay();
         console.log("Speed increased to:", speed);
+
+        speedUpBtn.classList.add("active");
+        setTimeout(() => speedUpBtn.classList.remove("active"), 200);
     }
 }
 
 function speedDownClickHandler() {
     if (speed > 0) {
-        speed -= 0.5;
+        speed -= 1;
         updateSpeedDisplay();
         console.log("Speed decreased to:", speed);
+
+        speedDownBtn.classList.add("active");
+        setTimeout(() => speedDownBtn.classList.remove("active"), 200);
     }
 }
 
