@@ -65,6 +65,34 @@ function updateSpeedDisplay() {
     if (speedEl) {
         speedEl.textContent = speed.toFixed(1);
     }
+    const runnerEl = document.getElementById('runner');
+    if (runnerEl) {
+        if (speed === 0) {
+            //sonic is idle
+            runnerEl.src = "img/idle.gif";
+            runnerEl.style.width = "70px";
+        }
+        else if (speed < 5) {
+            //sonic is walking
+            runnerEl.src = "img/walking.gif";
+            runnerEl.style.width = "50px";
+        }
+        else if (speed < 14) {
+            //sonic is running
+            runnerEl.src = "img/runner.gif";
+            runnerEl.style.width = "50px";
+        }
+        else if (speed < 20) {
+            //sonic is SPEEDING UP!!!
+            runnerEl.src = "img/betterboosting.gif";
+            runnerEl.style.width = "100px";
+        }
+        else {
+            //supersonic
+            runnerEl.src = "img/supersonic.gif";
+            runnerEl.style.width = "150px";
+        }
+    }
 }
 
 function updateInclineDisplay() {
@@ -96,7 +124,7 @@ function setWorkoutMode(mode) {
         case "walk":
             speed = 3;
             incline = 0;
-            countdownTime = 600;
+            countdownTime = 60;
             break;
         case "sprint":
             speed = 10;
@@ -120,6 +148,7 @@ function setWorkoutMode(mode) {
     updateInclineDisplay();
     updateTimerDisplay();
     updateProgressBar(0);
+    updateRunnerPosition();
 }
 
 function startCountdown(timeInSeconds) {
@@ -132,6 +161,7 @@ function startCountdown(timeInSeconds) {
             countdownTime--;
             updateTimerDisplay();
             updateProgressBar();
+            updateRunnerPosition();
         } else {
             console.log("Countdown complete!");
             stopCountdown();
@@ -158,6 +188,7 @@ function stopClickHandler() {
         updateInclineDisplay();
         updateTimerDisplay();
         updateProgressBar();
+        updateRunnerPosition();
         console.log("Workout stopped");
     }
 }
@@ -201,10 +232,53 @@ function inclineChangeHandler(event) {
 
 function updateInclineRotation() {
     const rotatingElement = document.getElementById('rotatingDiv');
-    if (rotatingElement) {
-        rotatingElement.style.transform = `rotate(${incline * -0.5}deg)`;
-    }
+    if (!rotatingElement) return;
+
+    rotatingElement.style.transformOrigin = "bottom left";
+    rotatingElement.style.transform = `rotate(${incline * -0.5}deg)`;
 }
+
+
+function updateRunnerPosition() {
+    const runner = document.getElementById('runner');
+    const rotatingDiv = document.getElementById('rotatingDiv');
+    if (!runner || !rotatingDiv ) return;
+
+    const verticalOffsetForPadding = 56; // ~3.5rem
+
+    if (workoutTotalTime === 0){
+        runner.style.left = "0px"
+        runner.style.bottom = `${verticalOffsetForPadding}px`;
+        return;
+
+    }
+
+    // fraction: how far are we in the workout?
+    const fraction = (workoutTotalTime - countdownTime) / workoutTotalTime;
+
+    // underscore width calculations
+    const lineLength = rotatingDiv.offsetWidth - runner.offsetWidth;
+    const travelDist = fraction * lineLength;
+
+    // some math thing with pi (pythagoras stuff)
+    const angleDeg = incline * 0.5;
+    const angleRad = angleDeg * (Math.PI / 180);
+
+    //transform-origin: bottom left x and y calc
+    const x = travelDist * Math.cos(angleRad);
+    const y = travelDist * Math.sin(angleRad);
+
+
+    // positioning sonic on x axis
+    runner.style.left = `${x}px`;
+    // positioning sonic on y axis
+    runner.style.bottom = `${y + verticalOffsetForPadding}px`;
+}
+
+
+
+
+
 
 
 function updateCurrentTime() {
@@ -216,3 +290,7 @@ function updateCurrentTime() {
     const minutes = now.getMinutes().toString().padStart(2, '0');
     currentTimeEl.textContent = `${hours}:${minutes}`;
 }
+
+
+
+
