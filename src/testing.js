@@ -15,6 +15,8 @@ function init() {
     const speedUpBtn = document.querySelector('.speedUpBtn');
     const speedDownBtn = document.querySelector('.speedDownBtn');
     const inclineSlider = document.getElementById('inclineSlider');
+    const inclineUpBtn = document.getElementById('incline-up');
+    const inclineDownBtn = document.getElementById('incline-down');
 
     // Add event listeners to all start buttons
     startBtns.forEach(btn => btn.addEventListener('click', startClickHandler));
@@ -24,6 +26,8 @@ function init() {
     speedDownBtn?.addEventListener('click', speedDownClickHandler);
     inclineSlider?.addEventListener('input', inclineChangeHandler);
     inclineSlider?.addEventListener('input', updateInclineRotation);
+    inclineUpBtn?.addEventListener('click', inclineUpClickHandler);
+    inclineDownBtn?.addEventListener('click', inclineDownClickHandler);
 
     // Initial UI updates
     updateSpeedDisplay();
@@ -215,4 +219,28 @@ function updateCurrentTime() {
     const hours = now.getHours().toString().padStart(2, '0');
     const minutes = now.getMinutes().toString().padStart(2, '0');
     currentTimeEl.textContent = `${hours}:${minutes}`;
+}
+
+// Function to increase incline by 1.0
+function inclineUpClickHandler() {
+    const inclineSlider = document.getElementById('inclineSlider');
+    if (inclineSlider && incline < 10) {
+        incline = Math.min(10, incline + 1.0);
+        inclineSlider.value = incline;
+        updateInclineDisplay();
+        updateInclineRotation();
+        console.log("Incline increased to:", incline);
+    }
+}
+
+// Function to decrease incline by 1.0
+function inclineDownClickHandler() {
+    const inclineSlider = document.getElementById('inclineSlider');
+    if (inclineSlider && incline > 0) {
+        incline = Math.max(0, incline - 1.0);
+        inclineSlider.value = incline;
+        updateInclineDisplay();
+        updateInclineRotation();
+        console.log("Incline decreased to:", incline);
+    }
 }
