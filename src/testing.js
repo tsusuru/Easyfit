@@ -50,7 +50,15 @@ function startClickHandler() {
             setWorkoutMode("walk");
         }
 
+
+
         startCountdown(countdownTime);
+    }
+
+    // Reset angle of incline graphic
+    const rotatingElement = document.getElementById('rotatingDiv');
+    if (rotatingElement) {
+        rotatingElement.style.transform = `rotate(0deg)`;
     }
 }
 
@@ -151,6 +159,18 @@ function stopClickHandler() {
         incline = 0;
         countdownTime = 0;
         workoutTotalTime = 0;
+
+        // Reset incline slider position
+        const inclineSlider = document.getElementById('inclineSlider');
+        if (inclineSlider) {
+            inclineSlider.value = 0;
+        }
+
+        // Reset angle of incline graphic
+        const rotatingElement = document.getElementById('rotatingDiv');
+        if (rotatingElement) {
+            rotatingElement.style.transform = `rotate(0deg)`;
+        }
 
         if (countdownInterval) {
             clearInterval(countdownInterval);
