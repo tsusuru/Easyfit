@@ -48,11 +48,10 @@
                 <p>Overige tijd</p>
             </div>
 
-            <div id="progressFill" class="w-80 h-20 border-2 rounded-xl mb-20 border-[#40E0D0]">
-                <!-- Onveranderd -->
+            <div id="progressBar" class="w-200 h-[30px] mt-[-60px] bg-[#666] relative rounded-[5px] overflow-hidden">
+                <div id="progressFill" class="w-0 h-full bg-[#40E0D0] transition-all duration-500 ease"></div>
             </div>
 
-            <!-- Belangrijk: 'relative' zodat de runner (absolute) in dezelfde container staat -->
             <div id="running-track" class="relative w-full h-55 border-2 rounded-xl flex items-center justify-center border-[#40E0D0]">
                 <div>
                     <p

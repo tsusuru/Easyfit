@@ -68,8 +68,7 @@ function updateTimerDisplay() {
 
     const minutes = Math.floor(countdownTime / 60);
     const seconds = countdownTime % 60;
-    const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-    timeDisplayEl.textContent = timeString;
+    timeDisplayEl.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
 
 function updateSpeedDisplay() {
@@ -128,15 +127,13 @@ function updateProgressBar() {
     progressEl.style.width = `${percentage}%`;
 }
 
-// Keep the remaining functions (stopClickHandler, pauseClickHandler, etc.) as they are,
-// just remove references to elements that don't exist in the HTML
 
 function setWorkoutMode(mode) {
     switch (mode) {
         case "walk":
             speed = 3;
             incline = 0;
-            countdownTime = 600;
+            countdownTime = 60;
             break;
         case "sprint":
             speed = 10;
@@ -190,13 +187,11 @@ function stopClickHandler() {
         countdownTime = 0;
         workoutTotalTime = 0;
 
-        // Reset incline slider position
         const inclineSlider = document.getElementById('inclineSlider');
         if (inclineSlider) {
             inclineSlider.value = 0;
         }
 
-        // Reset angle of incline graphic
         const rotatingElement = document.getElementById('rotatingDiv');
         if (rotatingElement) {
             rotatingElement.style.transform = `rotate(0deg)`;
@@ -310,7 +305,6 @@ function updateCurrentTime() {
     currentTimeEl.textContent = `${hours}:${minutes}`;
 }
 
-// Function to increase incline by 1.0
 function inclineUpClickHandler() {
     const inclineSlider = document.getElementById('inclineSlider');
     if (inclineSlider && incline < 10) {
@@ -322,7 +316,6 @@ function inclineUpClickHandler() {
     }
 }
 
-// Function to decrease incline by 1.0
 function inclineDownClickHandler() {
     const inclineSlider = document.getElementById('inclineSlider');
     if (inclineSlider && incline > 0) {
