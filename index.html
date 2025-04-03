@@ -34,7 +34,7 @@
                 <h2 class="text-center text-3xl pt-12 pb-12">Ik ben aan het:</h2>
             </div>
             <div>
-                <h3 class="text-center text-2xl">Rennen</h3>
+                <h3 class="text-center text-3xl">Rennen</h3>
             </div>
             <div class="flex justify-center align-middle">
                 <img class="max-w-3/4 justify-center pb-4" src="img/running_pictogram.png" alt="Huidige Activiteit pictogram.">
@@ -43,35 +43,48 @@
         </section>
 
         <section class="flex flex-col items-center justify-around workout-display min-w-3/4 bg-[#2B2B2B]">
-
             <div id="timeDisplay" class="w-80 h-20 flex flex-col items-center justify-center border-2 rounded-xl border-[#40E0D0]">
                 <h2 class="text-3xl">12:34</h2>
                 <p class="text-3xl">Overige tijd</p>
             </div>
-            <div id="progressFill" class="w-80 h-20 border-2 rounded-xl mb-20 border-[#40E0D0]">
 
+            <div id="progressBar" class="w-200 h-[30px] mt-[-60px] bg-[#666] relative rounded-[5px] overflow-hidden">
+                <div id="progressFill" class="w-0 h-full bg-[#40E0D0] transition-all duration-500 ease"></div>
             </div>
-            <div id="running-track" class="w-full h-55 border-2 rounded-xl flex items-center justify-center border-[#40E0D0]">
+
+            <div id="running-track" class="relative w-full h-55 border-2 rounded-xl flex items-center justify-center border-[#40E0D0]">
                 <div>
-                    <p id="rotatingDiv"  class="p-14">___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</p>
+                    <p
+                            id="rotatingDiv"
+                            class="p-14 transform origin-bottom-left"
+                    >
+                        _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+                    </p>
+                    <img
+                            id="runner"
+                            src="img/idle.gif"
+                            alt="Runner"
+                            class="absolute bottom-0 left-0 w-20 transition-all duration-500"
+                    />
                 </div>
             </div>
-
         </section>
+
+
     </div>
 </header>
 
 <main class="flex justify-around w-full h-100 bg-[#2B2B2B] border-t-8 border-[#40E0D0]">
 
-    <section class="incline flex min-w-1/5 justify-around border-x-4 bg-[#2B2B2B] border-[#40E0D0]">
+    <section class="incline flex min-w-1/5 justify-around border-x-4 bg-[#2B2B2B] border-[#40E0D0]" id="incline-control">
         <div class="incline-left w-[10rem] flex flex-col items-center justify-center space-y-10">
-            <h2 class="font-bold text-4xl mb-15">Incline</h2>
+            <h2 class="font-bold text-4xl mb-15">Hoogte</h2>
             <h3 id="inclineCounter" class="text-6xl">0.0</h3>
             <img src="img/mountain.png" alt="Incline Pictogram" class="w-30 h-30" />
         </div>
 
         <div class="incline-right w-[10rem] flex flex-col items-center gap-2 justify-between h-70 mt-13">
-            <img src="img/plus.png" alt="Incline +" class="w-6 h-6" />
+            <img src="img/plus.png" alt="Incline +" class="w-6 h-6" id="incline-up"/>
             <input
                     id="inclineSlider"
                     type="range"
@@ -81,7 +94,7 @@
                     value="0"
                     class="-rotate-90 w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
             />
-            <img src="img/minus-sign.png" alt="Incline -" class="w-6 h-6" />
+            <img src="img/minus-sign.png" alt="Incline -" class="w-6 h-6" id="incline-down" />
         </div>
     </section>
 
@@ -135,5 +148,10 @@
         </div>
     </section>
 </main>
+<dialog>
+    <div class="dialog-content">
+
+    </div>
+</dialog>
 </body>
 </html>
