@@ -15,6 +15,8 @@ function init() {
     const speedUpBtn = document.querySelector('.speedUpBtn');
     const speedDownBtn = document.querySelector('.speedDownBtn');
     const inclineSlider = document.getElementById('inclineSlider');
+    const inclineUpBtn = document.getElementById('incline-up');
+    const inclineDownBtn = document.getElementById('incline-down');
 
     // Add event listeners to all start buttons
     startBtns.forEach(btn => btn.addEventListener('click', startClickHandler));
@@ -24,6 +26,8 @@ function init() {
     speedDownBtn?.addEventListener('click', speedDownClickHandler);
     inclineSlider?.addEventListener('input', inclineChangeHandler);
     inclineSlider?.addEventListener('input', updateInclineRotation);
+    inclineUpBtn?.addEventListener('click', inclineUpClickHandler);
+    inclineDownBtn?.addEventListener('click', inclineDownClickHandler);
 
     // Initial UI updates
     updateSpeedDisplay();
@@ -46,7 +50,15 @@ function startClickHandler() {
             setWorkoutMode("walk");
         }
 
+
+
         startCountdown(countdownTime);
+    }
+
+    // Reset angle of incline graphic
+    const rotatingElement = document.getElementById('rotatingDiv');
+    if (rotatingElement) {
+        rotatingElement.style.transform = `rotate(0deg)`;
     }
 }
 
@@ -124,7 +136,7 @@ function setWorkoutMode(mode) {
         case "walk":
             speed = 3;
             incline = 0;
-            countdownTime = 60;
+            countdownTime = 600;
             break;
         case "sprint":
             speed = 10;
@@ -177,6 +189,18 @@ function stopClickHandler() {
         incline = 0;
         countdownTime = 0;
         workoutTotalTime = 0;
+
+        // Reset incline slider position
+        const inclineSlider = document.getElementById('inclineSlider');
+        if (inclineSlider) {
+            inclineSlider.value = 0;
+        }
+
+        // Reset angle of incline graphic
+        const rotatingElement = document.getElementById('rotatingDiv');
+        if (rotatingElement) {
+            rotatingElement.style.transform = `rotate(0deg)`;
+        }
 
         if (countdownInterval) {
             clearInterval(countdownInterval);
@@ -276,11 +300,6 @@ function updateRunnerPosition() {
 }
 
 
-
-
-
-
-
 function updateCurrentTime() {
     const currentTimeEl = document.querySelector('.border-x-4 h1');
     if (!currentTimeEl) return;
@@ -291,6 +310,26 @@ function updateCurrentTime() {
     currentTimeEl.textContent = `${hours}:${minutes}`;
 }
 
+// Function to increase incline by 1.0
+function inclineUpClickHandler() {
+    const inclineSlider = document.getElementById('inclineSlider');
+    if (inclineSlider && incline < 10) {
+        incline = Math.min(10, incline + 1.0);
+        inclineSlider.value = incline;
+        updateInclineDisplay();
+        updateInclineRotation();
+        console.log("Incline increased to:", incline);
+    }
+}
 
-
-
+// Function to decrease incline by 1.0
+function inclineDownClickHandler() {
+    const inclineSlider = document.getElementById('inclineSlider');
+    if (inclineSlider && incline > 0) {
+        incline = Math.max(0, incline - 1.0);
+        inclineSlider.value = incline;
+        updateInclineDisplay();
+        updateInclineRotation();
+        console.log("Incline decreased to:", incline);
+    }
+}
