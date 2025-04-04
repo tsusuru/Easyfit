@@ -127,21 +127,21 @@ function updateSpeedDisplay() {
         }
         else if (speed < 5) {
             //sonic is walking
-            modeLetters.textContent = "Lopen";
+            modeLetters.textContent = "Wandelen";
             modeEL.src = "img/walking_pictogram.png";
             runnerEl.src = "img/walking.gif";
             runnerEl.style.width = "50px";
         }
         else if (speed < 14) {
             //sonic is running
-            modeLetters.textContent = "Joggen";
+            modeLetters.textContent = "Rennen";
             modeEL.src = "img/jogging_pictogram.png";
             runnerEl.src = "img/runner.gif";
             runnerEl.style.width = "50px";
         }
         else if (speed < 20) {
             //sonic is SPEEDING UP!!!
-            modeLetters.textContent = "Rennen";
+            modeLetters.textContent = "Sprinten";
             modeEL.src = "img/running_pictogram.png";
             runnerEl.src = "img/betterboosting.gif";
             runnerEl.style.width = "100px";
