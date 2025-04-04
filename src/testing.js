@@ -10,6 +10,9 @@ let speedUpInterval = null;
 let speedDownInterval = null;
 
 function init() {
+
+    showWorkoutDialog(); // Show the workout dialog on page load (KEEP AT THE BEGINNING OF THE FUNCTION)
+
     // buttons - using querySelector for class-based selection
     const startBtns       = document.getElementById('startBtn');
     const stopBtn        = document.getElementById('stopBtn');
@@ -125,21 +128,21 @@ function updateSpeedDisplay() {
         else if (speed < 5) {
             //sonic is walking
             modeLetters.textContent = "Lopen";
-            modeEL.src = "img/walking_pictogram.png"
+            modeEL.src = "img/walking_pictogram.png";
             runnerEl.src = "img/walking.gif";
             runnerEl.style.width = "50px";
         }
         else if (speed < 14) {
             //sonic is running
             modeLetters.textContent = "Joggen";
-            modeEL.src = "img/jogging_pictogram.png"
+            modeEL.src = "img/jogging_pictogram.png";
             runnerEl.src = "img/runner.gif";
             runnerEl.style.width = "50px";
         }
         else if (speed < 20) {
             //sonic is SPEEDING UP!!!
             modeLetters.textContent = "Rennen";
-            modeEL.src = "img/running_pictogram.png"
+            modeEL.src = "img/running_pictogram.png";
             runnerEl.src = "img/betterboosting.gif";
             runnerEl.style.width = "100px";
         }
@@ -181,15 +184,15 @@ function setWorkoutMode(mode) {
             incline = 0;
             countdownTime = 60;
             break;
-        case "sprint":
+        case "jog":
             speed = 10;
-            incline = 2;
+            incline = 0;
             countdownTime = 120;
             break;
-        case "hill":
-            speed = 5;
-            incline = 5;
-            countdownTime = 300;
+        case "sprint":
+            speed = 15;
+            incline = 0;
+            countdownTime = 60;
             break;
     }
     workoutTotalTime = countdownTime;
@@ -451,4 +454,40 @@ function inclineDownClickHandler() {
         updateInclineRotation();
         console.log("Incline decreased to:", incline);
     }
+}
+
+// Function to display the workout options dialog
+function showWorkoutDialog() {
+    const dialog = document.querySelector('dialog');
+    const dialogContent = dialog.querySelector('.dialog-content');
+
+    dialogContent.innerHTML = `
+        <h2 class="text-6xl mb-12 text-center">Wat wil je doen?</h2>
+        <div class="flex justify-center items-center gap-16">
+            <div class="workout-option cursor-pointer" data-mode="walk">
+                <img src="img/walking_pictogram.png" alt="Walk Workout" 
+                    class="w-[30rem] transition-transform duration-200 hover:scale-105">
+                <p class="text-center mt-4 text-3xl">Ik wil wandelen!</p>
+            </div>
+            <div class="workout-option cursor-pointer" data-mode="jog">
+                <img src="img/jogging_pictogram.png" alt="Jog Workout" 
+                    class="w-[30rem] transition-transform duration-200 hover:scale-105">
+                <p class="text-center mt-4 text-3xl">Ik wil rennen!</p>
+            </div>
+            <div class="workout-option cursor-pointer" data-mode="sprint">
+                <img src="img/running_pictogram.png" alt="Sprint Workout" 
+                    class="w-[30rem] transition-transform duration-200 hover:scale-105">
+                <p class="text-center mt-4 text-3xl">Ik wil sprinten!</p>
+            </div>
+        </div>
+    `;
+
+    dialogContent.querySelectorAll('.workout-option').forEach(button => {
+        button.addEventListener('click', () => {
+            setWorkoutMode(button.dataset.mode);
+            dialog.close();
+        });
+    });
+
+    dialog.showModal();
 }

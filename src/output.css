@@ -1,4 +1,5 @@
-/*! tailwindcss v4.0.17 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v4.1.2 | MIT License | https://tailwindcss.com */
+@layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
@@ -6,8 +7,8 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-gray-200: oklch(0.928 0.006 264.531);
-    --color-gray-700: oklch(0.373 0.034 259.733);
+    --color-gray-200: oklch(92.8% 0.006 264.531);
+    --color-gray-700: oklch(37.3% 0.034 259.733);
     --spacing: 0.25rem;
     --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
@@ -137,7 +138,10 @@
   }
   @supports (not (-webkit-appearance: -apple-pay-button))  or (contain-intrinsic-size: 1px) {
     ::placeholder {
-      color: color-mix(in oklab, currentColor 50%, transparent);
+      color: currentcolor;
+      @supports (color: color-mix(in lab, red, red)) {
+        color: color-mix(in oklab, currentcolor 50%, transparent);
+      }
     }
   }
   textarea {
@@ -224,11 +228,11 @@
   .mb-6 {
     margin-bottom: calc(var(--spacing) * 6);
   }
+  .mb-12 {
+    margin-bottom: calc(var(--spacing) * 12);
+  }
   .mb-15 {
     margin-bottom: calc(var(--spacing) * 15);
-  }
-  .mb-20 {
-    margin-bottom: calc(var(--spacing) * 20);
   }
   .flex {
     display: flex;
@@ -251,11 +255,17 @@
   .h-70 {
     height: calc(var(--spacing) * 70);
   }
-  .h-100 {
-    height: calc(var(--spacing) * 100);
+  .h-\[6\.7\%\] {
+    height: 6.7%;
   }
   .h-\[30px\] {
     height: 30px;
+  }
+  .h-\[33\.7\%\] {
+    height: 33.7%;
+  }
+  .h-\[59\.6\%\] {
+    height: 59.6%;
   }
   .h-full {
     height: 100%;
@@ -263,17 +273,11 @@
   .h-screen {
     height: 100vh;
   }
-  .min-h-150 {
-    min-height: calc(var(--spacing) * 150);
-  }
   .w-0 {
     width: calc(var(--spacing) * 0);
   }
   .w-6 {
     width: calc(var(--spacing) * 6);
-  }
-  .w-10 {
-    width: calc(var(--spacing) * 10);
   }
   .w-20 {
     width: calc(var(--spacing) * 20);
@@ -292,6 +296,9 @@
   }
   .w-\[10rem\] {
     width: 10rem;
+  }
+  .w-\[30rem\] {
+    width: 30rem;
   }
   .w-full {
     width: 100%;
@@ -343,6 +350,9 @@
   }
   .gap-2 {
     gap: calc(var(--spacing) * 2);
+  }
+  .gap-16 {
+    gap: calc(var(--spacing) * 16);
   }
   .space-y-10 {
     :where(& > :not(:last-child)) {
@@ -470,9 +480,28 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
+  .transition-transform {
+    transition-property: transform, translate, scale, rotate;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .duration-200 {
+    --tw-duration: 200ms;
+    transition-duration: 200ms;
+  }
   .duration-500 {
     --tw-duration: 500ms;
     transition-duration: 500ms;
+  }
+  .hover\:scale-105 {
+    &:hover {
+      @media (hover: hover) {
+        --tw-scale-x: 105%;
+        --tw-scale-y: 105%;
+        --tw-scale-z: 105%;
+        scale: var(--tw-scale-x) var(--tw-scale-y);
+      }
+    }
   }
   .dark\:bg-gray-700 {
     @media (prefers-color-scheme: dark) {
@@ -496,6 +525,32 @@ html {
 .Btn {
   max-width: 200px;
   transition: all 0.3s ease-in;
+}
+dialog {
+  border: 4px solid #40E0D0;
+  border-radius: 16px;
+  padding: 4rem;
+  background: #2B2B2B;
+  color: white;
+  width: 90vw;
+  max-width: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.8);
+}
+.workout-option {
+  border: 4px solid #40E0D0;
+  border-radius: 16px;
+  padding: 2rem;
+  background: #1a1a1a;
+}
+.workout-option:hover {
+  background: #363636;
 }
 @layer components {
   .tester {
@@ -559,4 +614,37 @@ html {
 @property --tw-duration {
   syntax: "*";
   inherits: false;
+}
+@property --tw-scale-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@layer properties {
+  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
+    *, ::before, ::after, ::backdrop {
+      --tw-rotate-x: rotateX(0);
+      --tw-rotate-y: rotateY(0);
+      --tw-rotate-z: rotateZ(0);
+      --tw-skew-x: skewX(0);
+      --tw-skew-y: skewY(0);
+      --tw-space-y-reverse: 0;
+      --tw-border-style: solid;
+      --tw-font-weight: initial;
+      --tw-duration: initial;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-scale-z: 1;
+    }
+  }
 }
