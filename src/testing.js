@@ -28,7 +28,7 @@ function init() {
     stopBtn?.addEventListener('click', stopClickHandler);
     pauseBtn?.addEventListener('click', pauseClickHandler);
     speedUpBtn?.addEventListener('click', speedUpClickHandler);
-    // speedUpBtn?.addEventListener('click', () => playSound(speedUpSound.id));
+    speedUpBtn?.addEventListener('click', () => playSound(speedUpSound.id));
     speedDownBtn?.addEventListener('click', speedDownClickHandler);
     speedDownBtn?.addEventListener('click', () => playSound(speedDownSound.id));
     inclineSlider?.addEventListener('input', inclineChangeHandler);
