@@ -93,29 +93,40 @@ function updateSpeedDisplay() {
         speedEl.textContent = speed.toFixed(0);
     }
     const runnerEl = document.getElementById('runner');
+    const modeEL = document.getElementById('treadmillMode');
+    const modeLetters = document.getElementById('treadMillModeLetters')
     if (runnerEl) {
         if (speed === 0) {
             //sonic is idle
+            modeLetters.textContent = "Rusten";
+            modeEL.src = "img/walking_pictogram.png";
             runnerEl.src = "img/idle.gif";
             runnerEl.style.width = "70px";
         }
         else if (speed < 5) {
             //sonic is walking
+            modeLetters.textContent = "Lopen";
+            modeEL.src = "img/walking_pictogram.png"
             runnerEl.src = "img/walking.gif";
             runnerEl.style.width = "50px";
         }
         else if (speed < 14) {
             //sonic is running
+            modeLetters.textContent = "Joggen";
+            modeEL.src = "img/jogging_pictogram.png"
             runnerEl.src = "img/runner.gif";
             runnerEl.style.width = "50px";
         }
         else if (speed < 20) {
             //sonic is SPEEDING UP!!!
+            modeLetters.textContent = "Rennen";
+            modeEL.src = "img/running_pictogram.png"
             runnerEl.src = "img/betterboosting.gif";
             runnerEl.style.width = "100px";
         }
         else {
             //supersonic
+            modeLetters.textContent = "Limit breaken";
             runnerEl.src = "img/supersonic.gif";
             runnerEl.style.width = "150px";
         }
