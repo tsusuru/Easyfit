@@ -18,12 +18,19 @@ function init() {
     const inclineUpBtn = document.getElementById('incline-up');
     const inclineDownBtn = document.getElementById('incline-down');
 
+    const startSound = document.getElementById('startSound');
+    const stopSound = document.getElementById('stopSound');
+    const speedUpSound = document.getElementById('speedUpSound');
+    const speedDownSound = document.getElementById('speedDownSound');
+
     // Add event listeners to all start buttons
     startBtns?.addEventListener('click', startClickHandler);
     stopBtn?.addEventListener('click', stopClickHandler);
     pauseBtn?.addEventListener('click', pauseClickHandler);
     speedUpBtn?.addEventListener('click', speedUpClickHandler);
+    speedUpBtn?.addEventListener('click', () => playSound(speedUpSound.id));
     speedDownBtn?.addEventListener('click', speedDownClickHandler);
+    speedDownBtn?.addEventListener('click', () => playSound(speedDownSound.id));
     inclineSlider?.addEventListener('input', inclineChangeHandler);
     inclineSlider?.addEventListener('input', updateInclineRotation);
     inclineUpBtn?.addEventListener('click', inclineUpClickHandler);
@@ -40,6 +47,14 @@ function init() {
     setInterval(updateCurrentTime, 1000);
 }
 
+function playSound(soundId) {
+    const sound = document.getElementById(soundId);
+    if (sound) {
+        sound.currentTime = 0;
+        sound.play();
+    }
+}
+
 function startClickHandler() {
     if (!isRunning) {
         isRunning = true;
@@ -49,8 +64,6 @@ function startClickHandler() {
         if (countdownTime === 0) {
             setWorkoutMode("walk");
         }
-
-
 
         startCountdown(countdownTime);
 
