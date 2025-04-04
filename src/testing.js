@@ -6,6 +6,8 @@ let isRunning = false;
 let countdownTime = 0;
 let workoutTotalTime = 0;
 let countdownInterval = null;
+let speedUpInterval = null;
+let speedDownInterval = null;
 
 function init() {
 
@@ -30,16 +32,33 @@ function init() {
     startBtns?.addEventListener('click', startClickHandler);
     stopBtn?.addEventListener('click', stopClickHandler);
     pauseBtn?.addEventListener('click', pauseClickHandler);
-    speedUpBtn?.addEventListener('click', speedUpClickHandler);
+    // speedUpBtn?.addEventListener('click', speedUpClickHandler);
     speedUpBtn?.addEventListener('click', () => playSound(speedUpSound.id));
-    speedDownBtn?.addEventListener('click', speedDownClickHandler);
+    // speedDownBtn?.addEventListener('click', speedDownClickHandler);
     speedDownBtn?.addEventListener('click', () => playSound(speedDownSound.id));
     inclineSlider?.addEventListener('input', inclineChangeHandler);
     inclineSlider?.addEventListener('input', updateInclineRotation);
     inclineUpBtn?.addEventListener('click', inclineUpClickHandler);
     inclineDownBtn?.addEventListener('click', inclineDownClickHandler);
 
-    // Initial UI updates
+    if (speedUpBtn) {
+        speedUpBtn.addEventListener('mousedown', startIncreasingSpeed);
+        speedUpBtn.addEventListener('mouseup', stopIncreasingSpeed);
+        speedUpBtn.addEventListener('mouseleave', stopIncreasingSpeed);
+        //voor ipad straks
+        speedUpBtn.addEventListener('touchstart', startIncreasingSpeed);
+        speedUpBtn.addEventListener('touchend', stopIncreasingSpeed);
+    }
+    if (speedDownBtn) {
+        speedDownBtn.addEventListener('mousedown', startDecreasingSpeed);
+        speedDownBtn.addEventListener('mouseup', stopDecreasingSpeed);
+        speedDownBtn.addEventListener('mouseleave', stopDecreasingSpeed);
+        // voor ipad straks
+        speedDownBtn.addEventListener('touchstart', startDecreasingSpeed);
+        speedDownBtn.addEventListener('touchend', stopDecreasingSpeed);
+    }
+
+
     updateSpeedDisplay();
     updateInclineDisplay();
     updateTimerDisplay();
@@ -108,21 +127,21 @@ function updateSpeedDisplay() {
         }
         else if (speed < 5) {
             //sonic is walking
-            modeLetters.textContent = "Lopen";
+            modeLetters.textContent = "Wandelen";
             modeEL.src = "img/walking_pictogram.png";
             runnerEl.src = "img/walking.gif";
             runnerEl.style.width = "50px";
         }
         else if (speed < 14) {
             //sonic is running
-            modeLetters.textContent = "Joggen";
+            modeLetters.textContent = "Rennen";
             modeEL.src = "img/jogging_pictogram.png";
             runnerEl.src = "img/runner.gif";
             runnerEl.style.width = "50px";
         }
         else if (speed < 20) {
             //sonic is SPEEDING UP!!!
-            modeLetters.textContent = "Rennen";
+            modeLetters.textContent = "Sprinten";
             modeEL.src = "img/running_pictogram.png";
             runnerEl.src = "img/betterboosting.gif";
             runnerEl.style.width = "100px";
@@ -262,26 +281,95 @@ function pauseClickHandler() {
     }
 }
 
-function speedUpClickHandler() {
+// function speedUpClickHandler() {
+//     if (speed < 20) {
+//         speed += 1;
+//         updateSpeedDisplay();
+//         console.log("Speed increased to:", speed);
+//
+//         speedUpBtn.classList.add("active");
+//         setTimeout(() => speedUpBtn.classList.remove("active"), 200);
+//     }
+// }
+//
+// function speedDownClickHandler() {
+//     if (speed > 0) {
+//         speed -= 1;
+//         updateSpeedDisplay();
+//         console.log("Speed decreased to:", speed);
+//
+//         speedDownBtn.classList.add("active");
+//         setTimeout(() => speedDownBtn.classList.remove("active"), 200);
+//     }
+// }
+
+function startIncreasingSpeed(){
+    speedUpBtn.classList.add("active");
+
     if (speed < 20) {
         speed += 1;
         updateSpeedDisplay();
         console.log("Speed increased to:", speed);
-
-        speedUpBtn.classList.add("active");
-        setTimeout(() => speedUpBtn.classList.remove("active"), 200);
     }
+    speedUpDelay = setTimeout(() => {
+        speedUpInterval = setInterval(() => {
+            if (speed < 20) {
+                speed += 1;
+                updateSpeedDisplay();
+                console.log("Speed increased to:", speed);
+            } else {
+                clearInterval(speedUpInterval);
+            }
+        }, 100);
+    }, 500); // 1000 ms delay
+}
+function stopIncreasingSpeed() {
+    if (speedUpInterval) {
+        clearInterval(speedUpInterval);
+        speedUpInterval = null;
+    }
+    if (speedUpDelay) {
+        clearTimeout(speedUpDelay);
+        speedUpDelay = null;
+    }
+    setTimeout(() => speedUpBtn.classList.remove("active"), 200);
 }
 
-function speedDownClickHandler() {
+function startDecreasingSpeed() {
+    // Active animatie toevoegen
+    speedDownBtn.classList.add("active");
+
+    // Direct één keer speed verlagen
     if (speed > 0) {
         speed -= 1;
         updateSpeedDisplay();
         console.log("Speed decreased to:", speed);
-
-        speedDownBtn.classList.add("active");
-        setTimeout(() => speedDownBtn.classList.remove("active"), 200);
     }
+
+    // Na 500ms starten we een interval dat elke 100ms de speed verder verlaagt
+    speedDownDelay = setTimeout(() => {
+        speedDownInterval = setInterval(() => {
+            if (speed > 0) {
+                speed -= 1;
+                updateSpeedDisplay();
+                console.log("Speed decreased to:", speed);
+            } else {
+                clearInterval(speedDownInterval);
+            }
+        }, 100);
+    }, 500);
+}
+
+function stopDecreasingSpeed() {
+    if (speedDownDelay) {
+        clearTimeout(speedDownDelay);
+        speedDownDelay = null;
+    }
+    if (speedDownInterval) {
+        clearInterval(speedDownInterval);
+        speedDownInterval = null;
+    }
+    setTimeout(() => speedDownBtn.classList.remove("active"), 200);
 }
 
 function inclineChangeHandler(event) {
