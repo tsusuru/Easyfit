@@ -80,34 +80,60 @@ function updateSpeedDisplay() {
         speedEl.textContent = speed.toFixed(0);
     }
     const runnerEl = document.getElementById('runner');
+    const modeEL = document.getElementById('treadmillMode');
+    const modeLetters = document.getElementById('treadMillModeLetters')
     if (runnerEl) {
         if (speed === 0) {
             //sonic is idle
+            modeLetters.textContent = "Rusten";
+            modeEL.src = "img/walking_pictogram.png"
             runnerEl.src = "img/idle.gif";
             runnerEl.style.width = "70px";
         }
         else if (speed < 5) {
             //sonic is walking
+            modeLetters.textContent = "Lopen";
+            modeEL.src = "img/walking_pictogram.png"
             runnerEl.src = "img/walking.gif";
             runnerEl.style.width = "50px";
         }
         else if (speed < 14) {
             //sonic is running
+            modeLetters.textContent = "Joggen";
+            modeEL.src = "img/jogging_pictogram.png"
             runnerEl.src = "img/runner.gif";
             runnerEl.style.width = "50px";
         }
         else if (speed < 20) {
             //sonic is SPEEDING UP!!!
+            modeLetters.textContent = "Rennen";
+            modeEL.src = "img/running_pictogram.png"
             runnerEl.src = "img/betterboosting.gif";
             runnerEl.style.width = "100px";
         }
         else {
             //supersonic
+            modeLetters.textContent = "Limit breaken";
             runnerEl.src = "img/supersonic.gif";
             runnerEl.style.width = "150px";
         }
     }
 }
+
+// function updateModeDisplay(){
+//     const modeEL = document.getElementById('treadmillMode');
+//     if (modeEL){
+//         if (speed < 5){
+//             modeEL.src = "img/walking_pictogram.png";
+//         }
+//         else if (speed <= 14){
+//             modeEL.src = "img/jogging_pictogram.png";
+//         }
+//         else {
+//             modeEL.src = "img/running_pictogram.png";
+//         }
+//     }
+// }
 
 function updateInclineDisplay() {
     const inclineCounterEl = document.getElementById('inclineCounter');
@@ -136,7 +162,7 @@ function setWorkoutMode(mode) {
         case "walk":
             speed = 3;
             incline = 0;
-            countdownTime = 60;
+            countdownTime = 600;
             break;
         case "sprint":
             speed = 10;
