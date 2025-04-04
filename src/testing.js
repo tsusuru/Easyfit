@@ -368,29 +368,28 @@ function inclineDownClickHandler() {
     }
 }
 
-
 // Function to display the workout options dialog
 function showWorkoutDialog() {
     const dialog = document.querySelector('dialog');
     const dialogContent = dialog.querySelector('.dialog-content');
 
     dialogContent.innerHTML = `
-        <h2 class="text-3xl mb-6">Wat wil je doen?</h2>
-        <div class="flex gap-4">
+        <h2 class="text-6xl mb-12 text-center">Wat wil je doen?</h2>
+        <div class="flex justify-center items-center gap-16">
             <div class="workout-option cursor-pointer" data-mode="walk">
                 <img src="img/walking_pictogram.png" alt="Walk Workout" 
-                    class="w-40 transition-transform duration-200 hover:scale-105">
-                <p class="text-center mt-2">Ik wil wandelen!</p>
+                    class="w-[30rem] transition-transform duration-200 hover:scale-105">
+                <p class="text-center mt-4 text-3xl">Ik wil wandelen!</p>
             </div>
             <div class="workout-option cursor-pointer" data-mode="jog">
                 <img src="img/jogging_pictogram.png" alt="Jog Workout" 
-                    class="w-40 transition-transform duration-200 hover:scale-105">
-                <p class="text-center mt-2">Ik wil rennen!</p>
+                    class="w-[30rem] transition-transform duration-200 hover:scale-105">
+                <p class="text-center mt-4 text-3xl">Ik wil rennen!</p>
             </div>
             <div class="workout-option cursor-pointer" data-mode="sprint">
                 <img src="img/running_pictogram.png" alt="Sprint Workout" 
-                    class="w-40 transition-transform duration-200 hover:scale-105">
-                <p class="text-center mt-2">Ik wil sprinten!</p>
+                    class="w-[30rem] transition-transform duration-200 hover:scale-105">
+                <p class="text-center mt-4 text-3xl">Ik wil sprinten!</p>
             </div>
         </div>
     `;
