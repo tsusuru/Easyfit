@@ -133,21 +133,6 @@ function updateSpeedDisplay() {
     }
 }
 
-// function updateModeDisplay(){
-//     const modeEL = document.getElementById('treadmillMode');
-//     if (modeEL){
-//         if (speed < 5){
-//             modeEL.src = "img/walking_pictogram.png";
-//         }
-//         else if (speed <= 14){
-//             modeEL.src = "img/jogging_pictogram.png";
-//         }
-//         else {
-//             modeEL.src = "img/running_pictogram.png";
-//         }
-//     }
-// }
-
 function updateInclineDisplay() {
     const inclineCounterEl = document.getElementById('inclineCounter');
     if (inclineCounterEl) {
@@ -175,7 +160,7 @@ function setWorkoutMode(mode) {
         case "walk":
             speed = 3;
             incline = 0;
-            countdownTime = 600;
+            countdownTime = 60;
             break;
         case "sprint":
             speed = 10;
