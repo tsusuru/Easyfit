@@ -74,6 +74,9 @@ dialog::backdrop {
         border-color: white;
     }
 
+    .height-god {
+        height: 100vh;
+    }
 
 }
 
