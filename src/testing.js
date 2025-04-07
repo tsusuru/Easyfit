@@ -8,6 +8,7 @@ let workoutTotalTime = 0;
 let countdownInterval = null;
 let speedUpInterval = null;
 let speedDownInterval = null;
+let totalDistance = 0;
 
 function init() {
 
@@ -80,6 +81,7 @@ function playSound(soundId) {
 function startClickHandler() {
     if (!isRunning) {
         isRunning = true;
+        totalDistance = 0; // Reset distance at start
         console.log("Workout started.");
 
         // Default to walk mode if no time is set
@@ -87,11 +89,37 @@ function startClickHandler() {
             setWorkoutMode("walk");
         }
 
-        startCountdown(countdownTime);
+        // Start the countdown with distance tracking
+        if (countdownInterval) {
+            clearInterval(countdownInterval);
+        }
 
-        startBtn.classList.add("active");
-        pauseBtn.classList.remove("active");
-        setTimeout(() => startBtn.classList.remove("active"), 200);
+        countdownInterval = setInterval(() => {
+            if (countdownTime > 0) {
+                countdownTime--;
+                updateTimerDisplay();
+                updateProgressBar();
+                updateDistance(); // Track distance every second
+                updateRunnerPosition();
+            } else {
+                console.log("Countdown complete!");
+                if (countdownInterval) {
+                    clearInterval(countdownInterval);
+                    countdownInterval = null;
+                }
+                handleStopConfirmed();
+            }
+        }, 1000);
+
+        const startBtn = document.getElementById('startBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        if (startBtn) startBtn.classList.add("active");
+        if (pauseBtn) pauseBtn.classList.remove("active");
+        setTimeout(() => {
+            if (startBtn) startBtn.classList.remove("active");
+        }, 200);
+
+        playSound('startSound');
     }
 
     // Reset angle of incline graphic
@@ -175,6 +203,12 @@ function updateProgressBar() {
     const fraction = (workoutTotalTime - countdownTime) / workoutTotalTime;
     const percentage = fraction * 100;
     progressEl.style.width = `${percentage}%`;
+}
+
+function updateDistance() {
+    // Calculate distance covered in the last second
+    // speed is in km/h, so divide by 3600 to get km/s
+    totalDistance += speed / 3600;
 }
 
 
@@ -485,15 +519,10 @@ function showStopConfirmation() {
 }
 
 function handleStopConfirmed() {
-    const workoutDuration = workoutTotalTime - countdownTime; // Time in seconds
+    const workoutDuration = workoutTotalTime - countdownTime;
     const minutes = Math.floor(workoutDuration / 60);
     const seconds = workoutDuration % 60;
 
-    // Calculate distance (speed is in km/h, time in seconds)
-    // Formula: distance = speed * time in hours
-    const distanceKm = (speed * workoutDuration) / 3600; // Convert to kilometers
-
-    // Show results dialog
     const resultDialog = document.getElementById('resultScreen');
     resultDialog.innerHTML = `
         <div class="dialog-content">
@@ -503,7 +532,7 @@ function handleStopConfirmed() {
                     Tijd: ${minutes}:${seconds.toString().padStart(2, '0')}
                 </div>
                 <div class="text-4xl">
-                    Afstand: ${distanceKm.toFixed(2)} km
+                    Afstand: ${totalDistance.toFixed(2)} km
                 </div>
                 <button id="closeResults" class="text-white font-bold py-4 px-8 rounded-lg text-3xl border-3 border-[#40E0D0]">
                     Sluiten
@@ -512,7 +541,6 @@ function handleStopConfirmed() {
         </div>
     `;
 
-    // Add close button handler
     resultDialog.querySelector('#closeResults').addEventListener('click', () => {
         resultDialog.close();
     });
