@@ -280,8 +280,7 @@ function pauseClickHandler() {
         pauseBtn.classList.add("active");
         console.log("Workout paused");
     } else if (countdownTime > 0) {
-        isRunning = true;
-        startCountdown(countdownTime);
+        startClickHandler()
         pauseBtn.classList.remove("active");
         console.log("Workout resumed");
     }
