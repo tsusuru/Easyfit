@@ -266,7 +266,7 @@ function startCountdown(timeInSeconds) {
 function stopClickHandler() {
     if (isRunning) {
         showStopConfirmation();
-        return;
+
     }
 }
 
@@ -525,20 +525,32 @@ function handleStopConfirmed() {
 
     const resultDialog = document.getElementById('resultScreen');
     resultDialog.innerHTML = `
-        <div class="dialog-content">
-            <h2 class="text-6xl mb-12 text-center">Workout Resultaten</h2>
-            <div class="flex flex-col items-center gap-8">
-                <div class="text-4xl">
-                    Tijd: ${minutes}:${seconds.toString().padStart(2, '0')}
-                </div>
-                <div class="text-4xl">
-                    Afstand: ${totalDistance.toFixed(2)} km
-                </div>
-                <button id="closeResults" class="text-white font-bold py-4 px-8 rounded-lg text-3xl border-3 border-[#40E0D0]">
-                    Sluiten
-                </button>
-            </div>
-        </div>
+        <div class="dialog-content p-8 flex flex-col justify-center items-center min-h-screen">
+             <h2 class="text-4xl mb-12 text-center">Workout Resultaten</h2>
+                   <div class="flex justify-center items-center gap-8" id="results">
+                         <div class="flex-1 p-6 border-4 border-[#40E0D0] rounded-xl flex flex-col items-center">
+                               <h3 class="text-3xl mb-4">Mijn tijd is:</h3>
+                               <p class="text-5xl">${minutes}:${seconds.toString().padStart(2, '0')}</p>
+                         </div>
+
+                         <div class="flex-1 flex justify-center">
+                              <div class="w-[200px] h-[200px] flex items-center justify-center border-3 border-[#40E0D0] rounded-full">
+                              <img src="img/sonic-the-hedgehog-break-dance.gif" alt="Result Icon" class="w-[150px] h-[150px]">
+                         </div>    
+                   </div>
+
+                   <div class="flex-1 p-6 border-4 border-[#40E0D0] rounded-xl flex flex-col items-center">
+                         <h3 class="text-3xl mb-4">Mijn afstand is:</h3>
+                         <p class="text-5xl">${totalDistance.toFixed(2)} km</p>
+                   </div>
+         </div>
+
+    <div class="flex justify-center mt-12">
+        <button id="closeResults" class="text-white font-bold py-4 px-8 rounded-lg text-3xl border-4 border-[#40E0D0] hover:bg-[#40E0D0] hover:bg-opacity-20 transition-colors">
+            Sluiten
+        </button>
+    </div>
+</div>
     `;
 
     resultDialog.querySelector('#closeResults').addEventListener('click', () => {
