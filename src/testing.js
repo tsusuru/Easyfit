@@ -90,6 +90,7 @@ function startClickHandler() {
         startCountdown(countdownTime);
 
         startBtn.classList.add("active");
+        pauseBtn.classList.remove("active");
         setTimeout(() => startBtn.classList.remove("active"), 200);
     }
 
