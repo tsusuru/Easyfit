@@ -1,4 +1,4 @@
-If you read this.. you are ghey
+
 
 Imagine if ninja got a LOW TAPER FADE 
 
