@@ -258,7 +258,7 @@ function startCountdown(timeInSeconds) {
         } else {
             console.log("Countdown complete!");
             stopCountdown();
-            displayResults();
+            handleStopConfirmed();
         }
     }, 1000);
 }
