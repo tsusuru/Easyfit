@@ -485,8 +485,41 @@ function showStopConfirmation() {
 }
 
 function handleStopConfirmed() {
+    const workoutDuration = workoutTotalTime - countdownTime; // Time in seconds
+    const minutes = Math.floor(workoutDuration / 60);
+    const seconds = workoutDuration % 60;
+
+    // Calculate distance (speed is in km/h, time in seconds)
+    // Formula: distance = speed * time in hours
+    const distanceKm = (speed * workoutDuration) / 3600; // Convert to kilometers
+
+    // Show results dialog
+    const resultDialog = document.getElementById('resultScreen');
+    resultDialog.innerHTML = `
+        <div class="dialog-content">
+            <h2 class="text-6xl mb-12 text-center">Workout Resultaten</h2>
+            <div class="flex flex-col items-center gap-8">
+                <div class="text-4xl">
+                    Tijd: ${minutes}:${seconds.toString().padStart(2, '0')}
+                </div>
+                <div class="text-4xl">
+                    Afstand: ${distanceKm.toFixed(2)} km
+                </div>
+                <button id="closeResults" class="text-white font-bold py-4 px-8 rounded-lg text-3xl border-3 border-[#40E0D0]">
+                    Sluiten
+                </button>
+            </div>
+        </div>
+    `;
+
+    // Add close button handler
+    resultDialog.querySelector('#closeResults').addEventListener('click', () => {
+        resultDialog.close();
+    });
+
     playSound('stopSound');
     stopWorkout();
+    resultDialog.showModal();
 }
 
 function stopWorkout() {
