@@ -230,37 +230,8 @@ function startCountdown(timeInSeconds) {
 
 function stopClickHandler() {
     if (isRunning) {
-        isRunning = false;
-        speed = 0;
-        incline = 0;
-        countdownTime = 0;
-        workoutTotalTime = 0;
-
-        const inclineSlider = document.getElementById('inclineSlider');
-        if (inclineSlider) {
-            inclineSlider.value = 0;
-        }
-
-        const rotatingElement = document.getElementById('rotatingDiv');
-        if (rotatingElement) {
-            rotatingElement.style.transform = `rotate(0deg)`;
-        }
-
-        if (countdownInterval) {
-            clearInterval(countdownInterval);
-            countdownInterval = null;
-        }
-
-        // Reset displays
-        updateSpeedDisplay();
-        updateInclineDisplay();
-        updateTimerDisplay();
-        updateProgressBar();
-        updateRunnerPosition();
-        console.log("Workout stopped");
-
-        stopBtn.classList.add("active");
-        setTimeout(() => stopBtn.classList.remove("active"), 200);
+        showStopConfirmation();
+        return;
     }
 }
 
@@ -490,4 +461,54 @@ function showWorkoutDialog() {
     });
 
     dialog.showModal();
+}
+
+function showStopConfirmation() {
+    const dialog = document.getElementById('stopConfirmDialog');
+
+    // Remove any existing event listeners
+    const newDialog = dialog.cloneNode(true);
+    dialog.parentNode.replaceChild(newDialog, dialog);
+
+    // Add new event listeners
+    newDialog.querySelector('#confirmStop').addEventListener('click', () => {
+        newDialog.close();
+        handleStopConfirmed();
+    });
+
+    newDialog.querySelector('#cancelStop').addEventListener('click', () => {
+        newDialog.close();
+    });
+
+    newDialog.showModal();
+}
+
+function handleStopConfirmed() {
+    playSound('stopSound');
+    stopWorkout();
+}
+
+function stopWorkout() {
+    isRunning = false;
+    speed = 0;
+    incline = 0;
+    countdownTime = 0;
+    workoutTotalTime = 0;
+
+    if (countdownInterval) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+    }
+
+    updateSpeedDisplay();
+    updateInclineDisplay();
+    updateTimerDisplay();
+    updateProgressBar();
+    updateRunnerPosition();
+
+    const stopBtn = document.getElementById('stopBtn');
+    if (stopBtn) {
+        stopBtn.classList.add("active");
+        setTimeout(() => stopBtn.classList.remove("active"), 200);
+    }
 }
