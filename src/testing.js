@@ -584,4 +584,9 @@ function stopWorkout() {
         stopBtn.classList.add("active");
         setTimeout(() => stopBtn.classList.remove("active"), 200);
     }
+
+    const rotatingElement = document.getElementById('rotatingDiv');
+    if (rotatingElement) {
+        rotatingElement.style.transform = `rotate(0deg)`;
+    }
 }
