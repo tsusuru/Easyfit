@@ -159,14 +159,14 @@ function updateSpeedDisplay() {
             modeLetters.textContent = "Wandelen";
             modeEL.src = "img/walking_pictogram.png";
             runnerEl.src = "img/walking.gif";
-            runnerEl.style.width = "50px";
+            runnerEl.style.width = "70px";
         }
         else if (speed < 14) {
             //sonic is running
             modeLetters.textContent = "Rennen";
             modeEL.src = "img/jogging_pictogram.png";
             runnerEl.src = "img/runner.gif";
-            runnerEl.style.width = "50px";
+            runnerEl.style.width = "70px";
         }
         else if (speed < 20) {
             //sonic is SPEEDING UP!!!
