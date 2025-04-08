@@ -23,7 +23,7 @@ function init() {
     const inclineSlider = document.getElementById('inclineSlider');
     const inclineUpBtn = document.getElementById('incline-up');
     const inclineDownBtn = document.getElementById('incline-down');
-
+    const modeEL = document.getElementById('treadmillMode');
     const startSound = document.getElementById('startSound');
     const stopSound = document.getElementById('stopSound');
     const speedUpSound = document.getElementById('speedUpSound');
@@ -41,6 +41,7 @@ function init() {
     inclineSlider?.addEventListener('input', updateInclineRotation);
     inclineUpBtn?.addEventListener('click', inclineUpClickHandler);
     inclineDownBtn?.addEventListener('click', inclineDownClickHandler);
+    modeEL.addEventListener("click", testIt);
 
     if (speedUpBtn) {
         speedUpBtn.addEventListener('mousedown', startIncreasingSpeed);
@@ -68,6 +69,11 @@ function init() {
 
     updateCurrentTime();
     setInterval(updateCurrentTime, 1000);
+}
+function testIt (){
+    console.log(`Hello World!`)
+    stopWorkout()
+    showWorkoutDialog()
 }
 
 function playSound(soundId) {
@@ -183,6 +189,7 @@ function updateSpeedDisplay() {
         }
     }
 }
+
 
 function updateInclineDisplay() {
     const inclineCounterEl = document.getElementById('inclineCounter');
