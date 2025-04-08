@@ -159,14 +159,14 @@ function updateSpeedDisplay() {
             modeLetters.textContent = "Wandelen";
             modeEL.src = "img/walking_pictogram.png";
             runnerEl.src = "img/walking.gif";
-            runnerEl.style.width = "50px";
+            runnerEl.style.width = "70px";
         }
         else if (speed < 14) {
             //sonic is running
             modeLetters.textContent = "Rennen";
             modeEL.src = "img/jogging_pictogram.png";
             runnerEl.src = "img/runner.gif";
-            runnerEl.style.width = "50px";
+            runnerEl.style.width = "70px";
         }
         else if (speed < 20) {
             //sonic is SPEEDING UP!!!
@@ -533,7 +533,7 @@ function handleStopConfirmed() {
                          </div>
 
                          <div class="flex-1 flex justify-center">
-                              <div class="w-[200px] h-[200px] flex items-center justify-center border-3 border-[#40E0D0] rounded-full">
+                              <div class="w-[200px] h-[200px] flex items-center justify-center">
                               <img src="img/sonic-the-hedgehog-break-dance.gif" alt="Result Icon" class="w-[150px] h-[150px]">
                          </div>    
                    </div>
@@ -583,5 +583,10 @@ function stopWorkout() {
     if (stopBtn) {
         stopBtn.classList.add("active");
         setTimeout(() => stopBtn.classList.remove("active"), 200);
+    }
+
+    const rotatingElement = document.getElementById('rotatingDiv');
+    if (rotatingElement) {
+        rotatingElement.style.transform = `rotate(0deg)`;
     }
 }
