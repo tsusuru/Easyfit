@@ -533,7 +533,7 @@ function handleStopConfirmed() {
                          </div>
 
                          <div class="flex-1 flex justify-center">
-                              <div class="w-[200px] h-[200px] flex items-center justify-center border-3 border-[#40E0D0] rounded-full">
+                              <div class="w-[200px] h-[200px] flex items-center justify-center">
                               <img src="img/sonic-the-hedgehog-break-dance.gif" alt="Result Icon" class="w-[150px] h-[150px]">
                          </div>    
                    </div>
