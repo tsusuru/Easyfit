@@ -81,13 +81,22 @@ function playSound(soundId) {
 function startClickHandler() {
     if (!isRunning) {
         isRunning = true;
-        totalDistance = 0; // Reset distance at start
+        incline = 0;
         console.log("Workout started.");
 
         // Default to walk mode if no time is set
         if (countdownTime === 0) {
+            totalDistance = 0; // Reset distance at start
             setWorkoutMode("walk");
         }
+
+        const inclineSlider = document.getElementById('inclineSlider');
+        if (inclineSlider) {
+            inclineSlider.value = 0;
+        }
+
+        updateInclineDisplay();
+        updateInclineRotation();
 
         // Start the countdown with distance tracking
         if (countdownInterval) {
@@ -120,6 +129,8 @@ function startClickHandler() {
         }, 200);
 
         playSound('startSound');
+    } else {
+        return;
     }
 
     // Reset angle of incline graphic
@@ -244,29 +255,28 @@ function setWorkoutMode(mode) {
     updateRunnerPosition();
 }
 
-function startCountdown(timeInSeconds) {
-    if (countdownInterval) {
-        clearInterval(countdownInterval);
-    }
-
-    countdownInterval = setInterval(() => {
-        if (countdownTime > 0) {
-            countdownTime--;
-            updateTimerDisplay();
-            updateProgressBar();
-            updateRunnerPosition();
-        } else {
-            console.log("Countdown complete!");
-            stopCountdown();
-            handleStopConfirmed();
-        }
-    }, 1000);
-}
+// function startCountdown(timeInSeconds) {
+//     if (countdownInterval) {
+//         clearInterval(countdownInterval);
+//     }
+//
+//     countdownInterval = setInterval(() => {
+//         if (countdownTime > 0) {
+//             countdownTime--;
+//             updateTimerDisplay();
+//             updateProgressBar();
+//             updateRunnerPosition();
+//         } else {
+//             console.log("Countdown complete!");
+//             stopCountdown();
+//             handleStopConfirmed();
+//         }
+//     }, 1000);
+// }
 
 function stopClickHandler() {
     if (isRunning) {
         showStopConfirmation();
-
     }
 }
 
