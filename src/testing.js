@@ -46,7 +46,7 @@ function init() {
         speedUpBtn.addEventListener('mousedown', startIncreasingSpeed);
         speedUpBtn.addEventListener('mouseup', stopIncreasingSpeed);
         speedUpBtn.addEventListener('mouseleave', stopIncreasingSpeed);
-        //voor ipad straks
+        //For the Ipad
         speedUpBtn.addEventListener('touchstart', startIncreasingSpeed);
         speedUpBtn.addEventListener('touchend', stopIncreasingSpeed);
     }
@@ -54,7 +54,7 @@ function init() {
         speedDownBtn.addEventListener('mousedown', startDecreasingSpeed);
         speedDownBtn.addEventListener('mouseup', stopDecreasingSpeed);
         speedDownBtn.addEventListener('mouseleave', stopDecreasingSpeed);
-        // voor ipad straks
+        //For the Ipad
         speedDownBtn.addEventListener('touchstart', startDecreasingSpeed);
         speedDownBtn.addEventListener('touchend', stopDecreasingSpeed);
     }
@@ -71,6 +71,7 @@ function init() {
 }
 
 function playSound(soundId) {
+    //Plays the sound when pressed
     const sound = document.getElementById(soundId);
     if (sound) {
         sound.currentTime = 0;
@@ -79,9 +80,10 @@ function playSound(soundId) {
 }
 
 function startClickHandler() {
+    // Starts/continues the workout
     if (!isRunning) {
         isRunning = true;
-        totalDistance = 0; // Reset distance at start
+        totalDistance = 0;
         console.log("Workout started.");
 
         // Default to walk mode if no time is set
@@ -130,6 +132,7 @@ function startClickHandler() {
 }
 
 function updateTimerDisplay() {
+    //Updates the timer when counting down
     const timeDisplayEl = document.querySelector('#timeDisplay h2');
     if (!timeDisplayEl) return;
 
@@ -139,6 +142,7 @@ function updateTimerDisplay() {
 }
 
 function updateSpeedDisplay() {
+    //GIF and animations
     const speedEl = document.getElementById('speed-counter');
     if (speedEl) {
         speedEl.textContent = speed.toFixed(0);
@@ -185,6 +189,7 @@ function updateSpeedDisplay() {
 }
 
 function updateInclineDisplay() {
+    // Updates the Incline Display when bar is dragged
     const inclineCounterEl = document.getElementById('inclineCounter');
     if (inclineCounterEl) {
         inclineCounterEl.textContent = incline.toFixed(1);
@@ -192,6 +197,7 @@ function updateInclineDisplay() {
 }
 
 function updateProgressBar() {
+    // Updates progress bar based on time remaining
     const progressEl = document.getElementById('progressFill');
     if (!progressEl) return;
 
@@ -213,6 +219,7 @@ function updateDistance() {
 
 
 function setWorkoutMode(mode) {
+    // Workout modes with base stats
     switch (mode) {
         case "walk":
             speed = 3;
@@ -245,6 +252,7 @@ function setWorkoutMode(mode) {
 }
 
 function startCountdown(timeInSeconds) {
+    //countdown for Display Results
     if (countdownInterval) {
         clearInterval(countdownInterval);
     }
@@ -264,6 +272,7 @@ function startCountdown(timeInSeconds) {
 }
 
 function stopClickHandler() {
+    // Stops the workout
     if (isRunning) {
         showStopConfirmation();
 
@@ -271,6 +280,7 @@ function stopClickHandler() {
 }
 
 function pauseClickHandler() {
+    // Pauses the workout
     if (isRunning) {
         isRunning = false;
         if (countdownInterval) {
@@ -310,6 +320,7 @@ function pauseClickHandler() {
 // }
 
 function startIncreasingSpeed(){
+    // Increase Speed, Also with the ability to hold the button down
     speedUpBtn.classList.add("active");
 
     if (speed < 20) {
@@ -330,6 +341,7 @@ function startIncreasingSpeed(){
     }, 500); // 1000 ms delay
 }
 function stopIncreasingSpeed() {
+    // Stops the increase of speed when not being pressed
     if (speedUpInterval) {
         clearInterval(speedUpInterval);
         speedUpInterval = null;
@@ -342,17 +354,15 @@ function stopIncreasingSpeed() {
 }
 
 function startDecreasingSpeed() {
-    // Active animatie toevoegen
+    // Decrease Speed, Also with the ability to hold the button down
     speedDownBtn.classList.add("active");
 
-    // Direct één keer speed verlagen
     if (speed > 0) {
         speed -= 1;
         updateSpeedDisplay();
         console.log("Speed decreased to:", speed);
     }
 
-    // Na 500ms starten we een interval dat elke 100ms de speed verder verlaagt
     speedDownDelay = setTimeout(() => {
         speedDownInterval = setInterval(() => {
             if (speed > 0) {
@@ -367,6 +377,7 @@ function startDecreasingSpeed() {
 }
 
 function stopDecreasingSpeed() {
+    // Stop the decrease of speed when button hasn't been touched
     if (speedDownDelay) {
         clearTimeout(speedDownDelay);
         speedDownDelay = null;
@@ -379,12 +390,14 @@ function stopDecreasingSpeed() {
 }
 
 function inclineChangeHandler(event) {
+    //Changes incline value
     incline = parseFloat(event.target.value);
     updateInclineDisplay();
     console.log("Incline changed to:", incline);
 }
 
 function updateInclineRotation() {
+    // Incline line
     const rotatingElement = document.getElementById('rotatingDiv');
     if (!rotatingElement) return;
 
@@ -394,6 +407,7 @@ function updateInclineRotation() {
 
 
 function updateRunnerPosition() {
+    // Runner position changes based on time + Follows the incline line
     const runner = document.getElementById('runner');
     const rotatingDiv = document.getElementById('rotatingDiv');
     if (!runner || !rotatingDiv ) return;
@@ -431,6 +445,7 @@ function updateRunnerPosition() {
 
 
 function updateCurrentTime() {
+    //Updates current time
     const currentTimeEl = document.querySelector('.border-x-4 h1');
     if (!currentTimeEl) return;
 
@@ -441,6 +456,7 @@ function updateCurrentTime() {
 }
 
 function inclineUpClickHandler() {
+    // Makes the plus and minus clickable
     const inclineSlider = document.getElementById('inclineSlider');
     if (inclineSlider && incline < 10) {
         incline = Math.min(10, incline + 1.0);
@@ -452,6 +468,7 @@ function inclineUpClickHandler() {
 }
 
 function inclineDownClickHandler() {
+    // Makes the plus and minus clickable
     const inclineSlider = document.getElementById('inclineSlider');
     if (inclineSlider && incline > 0) {
         incline = Math.max(0, incline - 1.0);
@@ -499,6 +516,7 @@ function showWorkoutDialog() {
 }
 
 function showStopConfirmation() {
+    //Are you sure you want to stop?
     const dialog = document.getElementById('stopConfirmDialog');
 
     // Remove any existing event listeners
@@ -519,6 +537,7 @@ function showStopConfirmation() {
 }
 
 function handleStopConfirmed() {
+    //Result screen
     const workoutDuration = workoutTotalTime - countdownTime;
     const minutes = Math.floor(workoutDuration / 60);
     const seconds = workoutDuration % 60;
@@ -563,6 +582,7 @@ function handleStopConfirmed() {
 }
 
 function stopWorkout() {
+    //Stops the workout
     isRunning = false;
     speed = 0;
     incline = 0;
