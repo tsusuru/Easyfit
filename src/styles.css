@@ -107,5 +107,54 @@ button:hover {
         box-shadow: inset 0 0 40px #4E5153;
     }
 
+
 }
 
+/*@media screen and (min-device-width: 834px) and (max-device-width: 1366px) and (orientation: portrait),*/
+/*        screen and (min-device-width: 834px) and (max-device-width: 1366px) and (orientation: landscape) {*/
+
+/*    body {*/
+/*        background-color: #1e1e1e;*/
+/*    }*/
+
+/*    .nav-bar {*/
+/*        padding: 1rem 2rem;*/
+/*        background-color: #222;*/
+/*    }*/
+
+/*    .workout-display {*/
+/*        gap: 3rem;*/
+/*    }*/
+
+/*    .header-container {*/
+/*        flex-direction: column;*/
+/*    }*/
+
+/*    .current-workout,*/
+/*    .workout-display {*/
+/*        width: 100%;*/
+/*        border-right: none;*/
+/*        border-bottom: 4px solid #40E0D0;*/
+/*    }*/
+
+/*    main {*/
+/*        flex-direction: column;*/
+/*    }*/
+
+/*    .incline,*/
+/*    .playModes,*/
+/*    .speed {*/
+/*        min-width: 100%;*/
+/*        border: none;*/
+/*        border-top: 4px solid #40E0D0;*/
+/*        padding: 1rem 0;*/
+/*    }*/
+
+/*    .Btn {*/
+/*        width: 6rem !important;*/
+/*    }*/
+
+/*    #running-track {*/
+/*        width: 90%;*/
+/*    }*/
+/*}*/
